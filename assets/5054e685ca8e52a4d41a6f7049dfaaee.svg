@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+<rect width="1200" height="675" fill="#DCEAFB"></rect>
+<circle cx="980" cy="120" r="52" fill="#FDE9B8"></circle>
+<path d="M0 330 C180 270 300 300 420 280 C560 255 700 300 820 270 C960 240 1080 280 1200 260 V360 H0Z" fill="#B7CFB1"></path>
+<path d="M0 360 C200 330 380 350 600 340 C820 330 1000 350 1200 340 V675 H0Z" fill="#7FA977"></path>
+<polygon points="70,675 1130,675 650,345 550,345" fill="#374151"></polygon>
+<polygon points="70,675 1130,675 820,470 380,470" fill="#1F2937"></polygon>
+<polygon points="55,675 85,675 560,345 552,345" fill="#E5E7EB"></polygon>
+<polygon points="1115,675 1145,675 648,345 640,345" fill="#E5E7EB"></polygon>
+<polygon points="590,660 612,660 608,600 594,600" fill="#F8FAFC"></polygon>
+<polygon points="595,560 607,560 605,520 597,520" fill="#F8FAFC"></polygon>
+<polygon points="597,490 605,490 604,465 598,465" fill="#F8FAFC"></polygon>
+<polygon points="598,440 604,440 603,425 599,425" fill="#F8FAFC"></polygon>
+<polygon points="599,405 603,405 602,395 600,395" fill="#F8FAFC"></polygon>
+<g>
+<path d="M150 470 C140 380 160 300 190 230" stroke="#7C5A3A" stroke-width="14" fill="none" stroke-linecap="round"></path>
+<path d="M190 230 C140 200 90 210 60 240 C110 225 150 228 190 232Z" fill="#3F6E4A"></path>
+<path d="M190 230 C230 190 290 190 330 215 C280 210 235 218 192 234Z" fill="#4E8A57"></path>
+<path d="M190 230 C170 180 180 140 210 110 C205 160 200 195 194 232Z" fill="#3F6E4A"></path>
+<path d="M190 230 C250 230 290 260 300 300 C260 270 225 250 190 236Z" fill="#335E3E"></path>
+<path d="M190 232 C140 250 115 290 115 320 C140 285 165 260 192 238Z" fill="#4E8A57"></path>
+</g>
+<g>
+<path d="M1050 450 C1062 380 1050 320 1020 270" stroke="#7C5A3A" stroke-width="12" fill="none" stroke-linecap="round"></path>
+<path d="M1020 270 C980 240 935 245 905 270 C950 260 985 262 1020 274Z" fill="#3F6E4A"></path>
+<path d="M1020 270 C1050 235 1100 235 1135 255 C1090 252 1055 258 1022 274Z" fill="#4E8A57"></path>
+<path d="M1020 270 C1005 230 1012 200 1035 175 C1030 215 1026 245 1022 272Z" fill="#335E3E"></path>
+<path d="M1020 272 C1070 280 1100 305 1108 335 C1075 310 1045 292 1020 278Z" fill="#3F6E4A"></path>
+</g>
+<g transform="translate(700 470)">
+<rect x="0" y="40" width="200" height="70" rx="10" fill="#F2B705"></rect>
+<rect x="40" y="-10" width="100" height="60" rx="8" fill="#F2B705"></rect>
+<rect x="55" y="2" width="70" height="36" rx="4" fill="#BFDBFE"></rect>
+<rect x="30" y="-22" width="120" height="14" rx="4" fill="#334155"></rect>
+<rect x="-30" y="80" width="90" height="90" rx="45" fill="#4B5563"></rect>
+<rect x="-18" y="92" width="66" height="66" rx="33" fill="#6B7280"></rect>
+<circle cx="170" cy="125" r="45" fill="#4B5563"></circle>
+<circle cx="170" cy="125" r="22" fill="#9CA3AF"></circle>
+</g>
+<g fill="#F97316">
+<polygon points="470,640 500,640 486,590"></polygon>
+<polygon points="520,560 542,560 532,525"></polygon>
+<polygon points="548,500 564,500 556,475"></polygon>
+</g>
+<g fill="#FFFFFF"><rect x="475" y="620" width="21" height="6"></rect><rect x="524" y="547" width="15" height="5"></rect></g>
+<g transform="translate(400 600)">
+<circle cx="0" cy="-92" r="14" fill="#8D5B3E"></circle>
+<path d="M-15 -104 h30 v6 h-30z" fill="#F2B705"></path>
+<rect x="-19" y="-76" width="38" height="50" rx="12" fill="#F97316"></rect>
+<rect x="-19" y="-60" width="38" height="6" fill="#FDE68A"></rect>
+<rect x="-16" y="-30" width="13" height="42" rx="4" fill="#1E3A8A"></rect>
+<rect x="3" y="-30" width="13" height="42" rx="4" fill="#1E3A8A"></rect>
+</g>
+</svg>

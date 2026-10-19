@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nammude Naadu — civic social network</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Malayalam:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F8FAFC}
+a{color:#2563EB;text-decoration:none}a:hover{color:#1D4ED8;text-decoration:underline}
+.nn{font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:#1E293B;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#F8FAFC}
+.nn *{box-sizing:border-box}
+.ml{font-family:'Noto Sans Malayalam',Inter,sans-serif}
+.nn button,.nn input,.nn select,.nn textarea{font-family:inherit}
+.nn :focus-visible{outline:2px solid #2563EB;outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 18px;border-radius:999px;border:1px solid transparent;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+.btn-primary{background:#2563EB;color:#fff}.btn-primary:hover{background:#1D4ED8}
+.btn-secondary{background:#fff;color:#1E293B;border-color:#E2E8F0}.btn-secondary:hover{background:#F8FAFC;border-color:#CBD5E1}
+.btn-ghost{background:transparent;color:#334155}.btn-ghost:hover{background:#F1F5F9}
+.btn-violet{background:#F5F3FF;color:#6D28D9;border-color:#DDD6FE}.btn-violet:hover{background:#EDE9FE}
+.btn-danger{background:#fff;color:#DC2626;border-color:#FECACA}.btn-danger:hover{background:#FEF2F2}
+.btn-success{background:#fff;color:#15803D;border-color:#BBF7D0}.btn-success:hover{background:#F0FDF4}
+.btn-sm{min-height:34px;padding:0 14px;font-size:13px}
+.btn-block{width:100%;min-height:48px;font-size:15px}
+.lnk{background:none;border:0;padding:0;color:#2563EB;font-weight:600;font-size:inherit;cursor:pointer}.lnk:hover{color:#1D4ED8;text-decoration:underline}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:0;background:transparent;color:#64748B;cursor:pointer;flex:0 0 auto}.iconbtn:hover{background:#F1F5F9;color:#1E293B}
+.navitem{display:flex;align-items:center;gap:14px;width:100%;min-height:46px;padding:0 14px;border-radius:12px;border:0;background:transparent;color:#334155;font-size:15px;font-weight:500;cursor:pointer;text-align:left}
+.navitem:hover{background:#F1F5F9;color:#1E293B}
+.navitem.on{background:#EFF6FF;color:#1D4ED8;font-weight:650}
+.pill{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid #E2E8F0;background:#fff;color:#334155;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.pill:hover{border-color:#CBD5E1;background:#F8FAFC}
+.pill.on{background:#EFF6FF;border-color:#BFDBFE;color:#1D4ED8;font-weight:600}
+.tab{flex:1;min-height:52px;border:0;background:transparent;color:#64748B;font-size:15px;font-weight:600;cursor:pointer;position:relative}
+.tab:hover{background:#F8FAFC;color:#1E293B}
+.tab.on{color:#1E293B;box-shadow:inset 0 -3px 0 #2563EB}
+.act{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 10px;border-radius:999px;border:0;background:transparent;color:#64748B;font-size:13px;cursor:pointer;font-variant-numeric:tabular-nums}
+.act:hover{background:#EFF6FF;color:#2563EB}
+.act.like-on{color:#DC2626}.act.like-on:hover{background:#FEF2F2;color:#DC2626}
+.act.rp-on{color:#16A34A}.act.rp-on:hover{background:#F0FDF4;color:#16A34A}
+.act.bm-on{color:#2563EB}
+.namebtn{background:none;border:0;padding:0;font-weight:700;font-size:15px;color:#1E293B;cursor:pointer;text-align:left}.namebtn:hover{text-decoration:underline}
+.mi{display:flex;align-items:center;gap:10px;width:100%;min-height:40px;padding:0 12px;border:0;border-radius:8px;background:transparent;color:#1E293B;font-size:14px;cursor:pointer;text-align:left}.mi:hover{background:#F1F5F9}.mi.danger{color:#DC2626}.mi.danger:hover{background:#FEF2F2}
+.input{width:100%;min-height:44px;border:1px solid #E2E8F0;border-radius:12px;padding:10px 14px;font-size:14px;background:#fff;color:#1E293B}
+.input::placeholder{color:#94A3B8}
+.input:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.16)}
+.pollopt{width:100%;min-height:42px;border:1px solid #BFDBFE;border-radius:10px;background:#fff;color:#1D4ED8;font-size:14px;font-weight:600;cursor:pointer;text-align:left;padding:0 14px}.pollopt:hover{background:#EFF6FF}
+.rowbtn{display:block;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid #E2E8F0;padding:16px 20px;cursor:pointer;color:inherit;font:inherit}.rowbtn:hover{background:#F8FAFC}
+.cardbtn{display:block;width:100%;text-align:left;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:18px;cursor:pointer;color:inherit;font:inherit;transition:border-color .15s,box-shadow .15s}.cardbtn:hover{border-color:#BFDBFE;box-shadow:0 4px 16px rgba(15,23,42,.06)}
+.radio{display:flex;align-items:center;gap:12px;min-height:46px;padding:0 14px;border:1px solid #E2E8F0;border-radius:12px;cursor:pointer;font-size:14px}.radio:hover{background:#F8FAFC}
+.radio input{accent-color:#2563EB;width:18px;height:18px}
+.post:hover{background:#FCFDFF}
+.scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.scrollx::-webkit-scrollbar{display:none}
+.shell{display:flex;align-items:flex-start;max-width:1320px;margin:0 auto;padding:0 24px}
+.left{flex:0 0 256px;padding:20px 20px 32px 0}
+.center{flex:1 1 600px;min-width:0;max-width:640px;background:#fff;border-left:1px solid #E2E8F0;border-right:1px solid #E2E8F0;min-height:1200px}
+.right{flex:0 0 348px;padding:20px 0 32px 28px;display:flex;flex-direction:column;gap:16px}
+.shell.wide .right{display:none}.shell.wide .center{max-width:none}
+.mtop{display:none}
+.mstrip{display:none}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.split{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}
+@media (max-width:1200px){.right{display:none}.center{max-width:none}.mstrip{display:flex}}
+@media (max-width:960px){.left{flex-basis:80px;padding-right:12px}.left .lbl{display:none}.left .navitem{justify-content:center;padding:0}.left .postbtn{width:52px;height:52px;padding:0;min-height:52px}.left .usercard{display:none}.split{grid-template-columns:minmax(0,1fr)}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.left{display:none}.mtop{display:block}.shell{padding:0}.center{border:0}.g2,.g3{grid-template-columns:minmax(0,1fr)}.hideS{display:none}.post{padding-left:14px!important;padding-right:14px!important}}
+</style>
+</helmet>
+<div class="nn" style="min-height: 100vh">
+
+<sc-if value="{{showNotice}}" hint-placeholder-val="{{true}}">
+<div style="background: #1E293B; color: #E2E8F0; font-size: 13px; padding: 8px 16px; text-align: center; line-height: 1.4">
+<strong style="color: #fff; font-weight: 600">Illustrative prototype.</strong> Every person, account, party, post and record shown here is fictional sample content — not a real government record.
+</div>
+</sc-if>
+
+<!-- Mobile header -->
+<div class="mtop" style="background: #fff; border-bottom: 1px solid #E2E8F0">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px">
+<div style="width: 36px; height: 36px; border-radius: 10px; background: #2563EB; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 17px; flex: 0 0 auto" aria-hidden="true">N</div>
+<div style="flex: 1; min-width: 0; line-height: 1.15">
+<div style="font-weight: 800; font-size: 16px; letter-spacing: -0.01em">Nammude Naadu</div>
+<div class="ml" lang="ml" style="font-size: 12px; color: #64748B">നമ്മുടെ നാട്</div>
+</div>
+<button class="iconbtn" aria-label="Notifications" onClick="{{goNotif}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"></path></svg></button>
+<button class="btn btn-primary btn-sm" onClick="{{openCompose}}">Post</button>
+</div>
+<nav aria-label="Primary" class="scrollx" style="display: flex; gap: 8px; padding: 0 14px 12px">
+<sc-for list="{{navAll}}" as="n" hint-placeholder-count="8">
+<button class="{{n.pillCls}}" onClick="{{n.go}}">{{n.label}}</button>
+</sc-for>
+</nav>
+</div>
+
+<div class="{{shellCls}}">
+
+<!-- LEFT NAV -->
+<aside class="left" aria-label="Main navigation">
+<div style="display: flex; align-items: center; gap: 12px; padding: 4px 14px 20px">
+<div style="width: 40px; height: 40px; border-radius: 12px; background: #2563EB; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 19px; flex: 0 0 auto" aria-hidden="true">N</div>
+<div class="lbl" style="line-height: 1.15">
+<div style="font-weight: 800; font-size: 18px; letter-spacing: -0.015em">Nammude Naadu</div>
+<div class="ml" lang="ml" style="font-size: 13px; color: #64748B">നമ്മുടെ നാട്</div>
+</div>
+</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{navMain}}" as="n" hint-placeholder-count="7">
+<button class="{{n.cls}}" onClick="{{n.go}}" aria-label="{{n.label}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.icon}}"></path></svg>
+<span class="lbl" style="flex: 1">{{n.label}}</span>
+<sc-if value="{{n.hasBadge}}" hint-placeholder-val="{{false}}"><span class="lbl" style="min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px; background: #2563EB; color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center">{{n.badge}}</span></sc-if>
+</button>
+</sc-for>
+<div class="lbl" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #94A3B8; padding: 18px 14px 6px">Workspaces</div>
+<sc-for list="{{navWork}}" as="n" hint-placeholder-count="2">
+<button class="{{n.cls}}" onClick="{{n.go}}" aria-label="{{n.label}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.icon}}"></path></svg>
+<span class="lbl" style="flex: 1">{{n.label}}</span>
+</button>
+</sc-for>
+</nav>
+<button class="btn btn-primary btn-block postbtn" style="margin-top: 20px" onClick="{{openCompose}}" aria-label="Create post">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+<span class="lbl">Post</span>
+</button>
+<div class="usercard" style="display: flex; align-items: center; gap: 10px; margin-top: 24px; padding: 12px 14px; border: 1px solid #E2E8F0; border-radius: 14px; background: #fff">
+<div style="width: 40px; height: 40px; border-radius: 50%; background: #F1F5F9; color: #475569; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center" aria-hidden="true">DS</div>
+<div style="min-width: 0; line-height: 1.3">
+<div style="font-weight: 600; font-size: 14px">Devika S</div>
+<div style="font-size: 12px; color: #64748B">Citizen · Ward 7, Thekkumpuram</div>
+</div>
+</div>
+</aside>
+
+<!-- CENTRE -->
+<main class="center" aria-label="{{screenTitle}}">
+
+<!-- Mobile local strip -->
+<sc-if value="{{isFeed}}" hint-placeholder-val="{{true}}">
+<div class="mstrip scrollx" style="gap: 10px; padding: 12px 16px; border-bottom: 1px solid #E2E8F0; background: #F8FAFC">
+<sc-for list="{{events}}" as="e" hint-placeholder-count="3">
+<div style="flex: 0 0 auto; display: flex; gap: 10px; align-items: center; background: #fff; border: 1px solid #E2E8F0; border-radius: 12px; padding: 8px 12px 8px 8px">
+<div style="width: 40px; text-align: center; border-radius: 8px; background: #EFF6FF; color: #1D4ED8; padding: 4px 0; line-height: 1.1"><div style="font-size: 10px; font-weight: 700; text-transform: uppercase">{{e.mon}}</div><div style="font-size: 16px; font-weight: 800">{{e.day}}</div></div>
+<div style="font-size: 13px; line-height: 1.3"><div style="font-weight: 600">{{e.title}}</div><div style="color: #64748B">{{e.place}}</div></div>
+</div>
+</sc-for>
+<button class="pill" onClick="{{goOpps}}" style="flex: 0 0 auto">7 local opportunities →</button>
+</div>
+</sc-if>
+
+<!-- Screen header -->
+<header style="padding: 16px 20px 14px; border-bottom: 1px solid #E2E8F0; background: #fff">
+<div style="display: flex; align-items: center; gap: 12px">
+<sc-if value="{{hasBack}}" hint-placeholder-val="{{false}}">
+<button class="iconbtn" aria-label="Back" onClick="{{goBack}}" style="margin-left: -8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg></button>
+</sc-if>
+<div style="flex: 1; min-width: 0">
+<h1 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25">{{screenTitle}}</h1>
+<div style="font-size: 13px; color: #64748B; margin-top: 2px">{{screenSub}}</div>
+</div>
+<button class="iconbtn hideS" aria-label="Notifications" onClick="{{goNotif}}" style="position: relative"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"></path></svg><span style="position: absolute; top: 8px; right: 9px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #fff"></span></button>
+</div>
+</header>
+
+<!-- ================= FEED ================= -->
+<sc-if value="{{isFeed}}" hint-placeholder-val="{{true}}">
+<div role="tablist" aria-label="Feed" style="display: flex; border-bottom: 1px solid #E2E8F0">
+<button role="tab" class="{{tabAllCls}}" aria-selected="{{tabAllOn}}" onClick="{{tabAll}}">All Posts</button>
+<button role="tab" class="{{tabFolCls}}" aria-selected="{{tabFolOn}}" onClick="{{tabFol}}">Following</button>
+</div>
+<div style="display: flex; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #E2E8F0">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #F1F5F9; color: #475569; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto" aria-hidden="true">DS</div>
+<div style="flex: 1; min-width: 0">
+<button onClick="{{openCompose}}" style="width: 100%; text-align: left; border: 0; background: transparent; padding: 10px 0; font-size: 18px; color: #94A3B8; cursor: text">What’s happening in your ward?</button>
+<div style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid #F1F5F9">
+<button class="iconbtn" aria-label="Add photo" onClick="{{openCompose}}" style="color: #2563EB"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6M15.5 9.5h.01"></path></svg></button>
+<button class="iconbtn" aria-label="Create poll" onClick="{{openPoll}}" style="color: #2563EB"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"></path></svg></button>
+<button class="iconbtn" aria-label="Report a civic issue" onClick="{{openIssue}}" style="color: #2563EB"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-1.5 4L16 12H5"></path></svg></button>
+<button class="iconbtn" aria-label="Add location" onClick="{{openCompose}}" style="color: #2563EB"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 1 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"></path></svg></button>
+<span style="flex: 1"></span>
+<button class="btn btn-primary btn-sm" onClick="{{openCompose}}">Post</button>
+</div>
+</div>
+</div>
+<div class="scrollx" style="display: flex; gap: 8px; padding: 12px 20px; border-bottom: 1px solid #E2E8F0" aria-label="Filter posts by type">
+<sc-for list="{{typeChips}}" as="c" hint-placeholder-count="8">
+<button class="{{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- ================= REP PROFILE HEADER ================= -->
+<sc-if value="{{isRep}}" hint-placeholder-val="{{false}}">
+<div style="height: 120px; background: #EFF6FF; border-bottom: 1px solid #DBEAFE"></div>
+<div style="padding: 0 20px 18px; border-bottom: 1px solid #E2E8F0">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: -44px">
+<div style="width: 96px; height: 96px; border: 4px solid #fff; font-size: 30px; font-weight: 800; display: flex; align-items: center; justify-content: center; {{rep.av}}" aria-hidden="true">{{rep.initials}}</div>
+<div style="display: flex; gap: 8px; padding-bottom: 4px">
+<button class="btn btn-secondary btn-sm" onClick="{{rep.onAsk}}">Ask a question</button>
+<button class="{{rep.followCls}}" onClick="{{rep.onFollow}}">{{rep.followTxt}}</button>
+</div>
+</div>
+<div style="margin-top: 12px; display: flex; align-items: center; gap: 6px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em">{{rep.name}}</h2>
+<sc-if value="{{rep.verified}}" hint-placeholder-val="{{true}}"><svg width="20" height="20" viewBox="0 0 24 24" role="img" aria-label="Verified account"><path fill="#2563EB" d="M12 1.6l2.5 1.8 3.1-.1.9 2.9 2.5 1.8-1 2.9 1 2.9-2.5 1.8-.9 2.9-3.1-.1L12 22.4l-2.5-1.8-3.1.1-.9-2.9-2.5-1.8 1-2.9-1-2.9 2.5-1.8.9-2.9 3.1.1z"></path><path d="M8 12.3l2.7 2.6L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
+</div>
+<div style="color: #64748B; font-size: 14px">{{rep.handle}} · {{rep.role}}</div>
+<sc-if value="{{rep.hasAff}}" hint-placeholder-val="{{true}}"><div style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #475569; border: 1px solid #E2E8F0; border-radius: 999px; padding: 3px 10px">Affiliation: {{rep.aff}}</div></sc-if>
+<p style="margin: 12px 0 0; font-size: 15px">{{rep.bio}}</p>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; font-size: 14px; color: #64748B">
+<span><strong style="color: #1E293B">{{rep.followers}}</strong> followers</span>
+<span><strong style="color: #1E293B">{{rep.response}}</strong> issue response rate</span>
+<span><strong style="color: #1E293B">{{rep.projects}}</strong> projects tracked</span>
+</div>
+<div style="margin-top: 14px; display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid #DBEAFE; background: #F8FAFF; border-radius: 12px; font-size: 13px; color: #334155">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 1px"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"></path></svg>
+<div><strong>Verified identity</strong> — {{rep.verifNote}} A verified badge confirms who runs this account; it does not confirm the claims in its posts. Claims are labelled separately on each post.</div>
+</div>
+</div>
+<div role="tablist" style="display: flex; border-bottom: 1px solid #E2E8F0">
+<button role="tab" class="tab on" aria-selected="true">Posts</button>
+<button role="tab" class="tab" aria-selected="false" onClick="{{goProjects}}">Projects</button>
+<button role="tab" class="tab" aria-selected="false" onClick="{{goIssues}}">Issues</button>
+</div>
+</sc-if>
+
+<!-- ================= POST LIST (feed + profile) ================= -->
+<sc-if value="{{showPosts}}" hint-placeholder-val="{{true}}">
+<div>
+<sc-if value="{{noPosts}}" hint-placeholder-val="{{false}}">
+<div style="padding: 48px 24px; text-align: center; color: #64748B">
+<div style="font-weight: 700; color: #1E293B; font-size: 17px">No posts match this view</div>
+<div style="margin-top: 4px">Follow more representatives or clear the filter to see more.</div>
+<button class="btn btn-secondary btn-sm" style="margin-top: 14px" onClick="{{clearFilter}}">Clear filter</button>
+</div>
+</sc-if>
+<sc-for list="{{posts}}" as="p" hint-placeholder-count="6">
+<article class="post" style="position: relative; padding: 16px 20px; border-bottom: 1px solid #E2E8F0">
+
+<sc-if value="{{p.removed}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 12px; font-size: 14px; color: #475569">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 1px"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9.5 9.5l5 5M14.5 9.5l-5 5"></path></svg>
+<div><div style="font-weight: 600; color: #1E293B">Post removed by moderators · {{p.t}}</div><div style="margin-top: 2px">{{p.text}}</div><div style="margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap"><button class="lnk" onClick="{{p.onLog}}">View moderation log</button><button class="lnk" onClick="{{p.onGuide}}">Community guidelines</button></div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{p.live}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; gap: 12px">
+<div style="width: 44px; height: 44px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; {{p.au.av}}" aria-hidden="true">{{p.au.initials}}</div>
+<div style="flex: 1; min-width: 0">
+
+<sc-if value="{{p.hasKicker}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; margin-bottom: 4px; {{p.kStyle}}">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{p.kIcon}}"></path></svg>{{p.kLabel}}
+</div>
+</sc-if>
+
+<div style="display: flex; align-items: flex-start; gap: 6px">
+<div style="flex: 1; min-width: 0">
+<div style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap; line-height: 1.35">
+<sc-if value="{{p.au.hasProfile}}" hint-placeholder-val="{{true}}"><button class="namebtn" onClick="{{p.onAuthor}}">{{p.au.name}}</button></sc-if>
+<sc-if value="{{p.au.noProfile}}" hint-placeholder-val="{{false}}"><span style="font-weight: 700; font-size: 15px">{{p.au.name}}</span></sc-if>
+<sc-if value="{{p.au.verified}}" hint-placeholder-val="{{true}}"><svg width="17" height="17" viewBox="0 0 24 24" role="img" aria-label="Verified account" style="flex: 0 0 auto"><title>Verified account</title><path fill="#2563EB" d="M12 1.6l2.5 1.8 3.1-.1.9 2.9 2.5 1.8-1 2.9 1 2.9-2.5 1.8-.9 2.9-3.1-.1L12 22.4l-2.5-1.8-3.1.1-.9-2.9-2.5-1.8 1-2.9-1-2.9 2.5-1.8.9-2.9 3.1.1z"></path><path d="M8 12.3l2.7 2.6L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
+<span style="color: #64748B; font-size: 14px">{{p.au.handle}} · <time title="{{p.dt}}">{{p.t}}</time></span>
+</div>
+<div style="font-size: 13px; color: #64748B; line-height: 1.4">{{p.au.roleLine}}</div>
+</div>
+<button class="iconbtn" aria-label="More options" aria-expanded="{{p.menuOpen}}" onClick="{{p.onMore}}" style="margin: -6px -8px 0 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"></path></svg></button>
+</div>
+
+<sc-if value="{{p.menuOpen}}" hint-placeholder-val="{{false}}">
+<div role="menu" style="position: absolute; right: 16px; top: 52px; z-index: 30; width: 250px; background: #fff; border: 1px solid #E2E8F0; border-radius: 14px; box-shadow: 0 16px 40px rgba(15,23,42,0.14); padding: 6px">
+<button role="menuitem" class="mi" onClick="{{p.onShare}}">Copy link to post</button>
+<button role="menuitem" class="mi" onClick="{{p.onBookmark}}">{{p.bmMenu}}</button>
+<button role="menuitem" class="mi" onClick="{{p.onWhy}}">Why am I seeing this?</button>
+<button role="menuitem" class="mi" onClick="{{p.onMute}}">Mute {{p.au.short}}</button>
+<div style="height: 1px; background: #E2E8F0; margin: 4px 0"></div>
+<button role="menuitem" class="mi danger" onClick="{{p.onReport}}">Report post</button>
+</div>
+</sc-if>
+
+<div style="margin-top: 6px; font-size: 15px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere">{{p.text}}</div>
+<sc-if value="{{p.hasMl}}" hint-placeholder-val="{{false}}"><div class="ml" lang="ml" style="margin-top: 6px; font-size: 15px; line-height: 1.7; color: #1E293B">{{p.ml}}</div></sc-if>
+
+<sc-if value="{{p.hasImg}}" hint-placeholder-val="{{false}}">
+<figure style="margin: 12px 0 0; border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden">
+<div style="position: relative; aspect-ratio: 16 / 9; background: #F1F5F9">
+<img src="{{p.imgSrc}}" alt="{{p.img}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+<span style="position: absolute; left: 12px; top: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: rgba(255,255,255,0.92); color: #334155; border-radius: 999px; padding: 4px 10px">Illustrative image</span>
+</div>
+<figcaption style="padding: 8px 12px; font-size: 12px; color: #64748B; background: #fff; border-top: 1px solid #E2E8F0">{{p.img}}</figcaption>
+</figure>
+</sc-if>
+
+<sc-if value="{{p.hasPoll}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px">
+<sc-if value="{{p.pollOpen}}" hint-placeholder-val="{{true}}">
+<sc-for list="{{p.pollOpts}}" as="o" hint-placeholder-count="3"><button class="pollopt" onClick="{{o.vote}}">{{o.label}}</button></sc-for>
+</sc-if>
+<sc-if value="{{p.pollDone}}" hint-placeholder-val="{{false}}">
+<sc-for list="{{p.pollOpts}}" as="o" hint-placeholder-count="3">
+<div style="position: relative; height: 40px; border-radius: 10px; background: #F1F5F9; overflow: hidden">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{o.pct}}%; background: {{o.fill}}"></div>
+<div style="position: relative; display: flex; justify-content: space-between; align-items: center; height: 100%; padding: 0 12px; font-size: 14px; font-weight: {{o.fw}}"><span>{{o.label}}{{o.mine}}</span><span style="font-variant-numeric: tabular-nums">{{o.pct}}%</span></div>
+</div>
+</sc-for>
+</sc-if>
+<div style="font-size: 13px; color: #64748B">{{p.pollMeta}}</div>
+</div>
+</sc-if>
+
+<sc-if value="{{p.hasProject}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 12px; border: 1px solid #E2E8F0; border-radius: 14px; padding: 12px 14px">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span style="font-weight: 600">{{p.project.name}}</span><span style="font-weight: 700; color: #1D4ED8">{{p.project.pct}}%</span></div>
+<div style="height: 8px; border-radius: 999px; background: #E2E8F0; margin-top: 8px; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{p.project.pct}}%; background: {{p.project.fill}}"></div></div>
+<div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 12px; color: #64748B"><span>{{p.project.meta}}</span><button class="lnk" style="font-size: 12px" onClick="{{goProjects}}">Track project</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{p.hasOpp}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 12px; border: 1px solid #BBF7D0; background: #F7FEF9; border-radius: 14px; padding: 14px">
+<div style="font-weight: 700; font-size: 15px">{{p.opp.title}}</div>
+<div style="font-size: 13px; color: #475569; margin-top: 2px">{{p.opp.dept}}</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #334155; margin-top: 8px"><span><strong>Deadline:</strong> {{p.opp.deadline}}</span><span><strong>Eligibility:</strong> {{p.opp.elig}}</span></div>
+<div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap"><button class="btn btn-primary btn-sm" onClick="{{p.onApply}}">View details</button><button class="btn btn-secondary btn-sm" onClick="{{p.onBookmark}}">{{p.bmMenu}}</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{p.hasIssue}}" hint-placeholder-val="{{false}}">
+<button class="cardbtn" style="margin-top: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px" onClick="{{p.onIssue}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto"><path d="M5 21V4M5 4h11l-1.5 4L16 12H5"></path></svg>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 12px; color: #64748B">Linked issue {{p.issue.id}}</span><span style="display: block; font-weight: 600; font-size: 14px">{{p.issue.title}}</span></span>
+<span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; white-space: nowrap; {{p.issue.st}}">{{p.issue.status}}</span>
+</button>
+</sc-if>
+
+<sc-if value="{{p.hasCorrection}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; border: 1px solid #FDE68A; background: #FFFBEB; border-radius: 12px; padding: 10px 12px; font-size: 13px; color: #78350F">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 1px"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
+<div>{{p.correction}}</div>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; margin-top: 12px; font-size: 12px; color: #64748B">
+<span style="display: inline-flex; align-items: center; gap: 4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 1 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"></path></svg>{{p.loc}}</span>
+<span style="display: inline-flex; align-items: center; gap: 4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6v18h12V7zM14 3v4h4M9 13h6M9 17h6"></path></svg>Source: {{p.src}}</span>
+</div>
+<sc-if value="{{p.hasClaim}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 8px; display: inline-flex; align-items: flex-start; gap: 6px; font-size: 12px; font-weight: 500; border-radius: 10px; padding: 5px 10px; border: 1px solid; {{p.claimStyle}}">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px"><path d="{{p.claimIcon}}"></path></svg><span>{{p.claimText}}</span>
+</div>
+</sc-if>
+
+<div style="display: flex; justify-content: space-between; margin: 8px 0 -6px -10px; max-width: 480px">
+<button class="act" aria-label="Reply" onClick="{{p.onReply}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"></path></svg>{{p.rTxt}}</button>
+<button class="{{p.rpCls}}" aria-label="Repost" aria-pressed="{{p.reposted}}" onClick="{{p.onRepost}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"></path></svg>{{p.rpTxt}}</button>
+<button class="{{p.likeCls}}" aria-label="Like" aria-pressed="{{p.liked}}" onClick="{{p.onLike}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="{{p.likeFill}}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"></path></svg>{{p.lTxt}}</button>
+<button class="{{p.bmCls}}" aria-label="Bookmark" aria-pressed="{{p.bookmarked}}" onClick="{{p.onBookmark}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="{{p.bmFill}}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>{{p.bTxt}}</button>
+<button class="act" aria-label="Share" onClick="{{p.onShare}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"></path></svg></button>
+</div>
+</div>
+</div>
+</sc-if>
+</article>
+</sc-for>
+<div style="padding: 24px 20px 40px; text-align: center">
+<div style="font-size: 13px; color: #64748B; margin-bottom: 12px">Showing {{shownCount}} of {{totalCount}} posts</div>
+<sc-if value="{{hasMore}}" hint-placeholder-val="{{true}}"><button class="btn btn-secondary" onClick="{{loadMore}}" style="min-width: 220px">Load {{moreCount}} more posts</button></sc-if>
+<sc-if value="{{allShown}}" hint-placeholder-val="{{false}}"><div style="font-weight: 600; color: #1E293B">You’re all caught up</div><div style="font-size: 13px; color: #64748B; margin-top: 2px">Sample timeline ends here.</div></sc-if>
+</div>
+</div>
+</sc-if>
+
+<!-- ================= LOCAL ISSUES ================= -->
+<sc-if value="{{isIssues}}" hint-placeholder-val="{{false}}">
+<div style="padding: 16px 20px; border-bottom: 1px solid #E2E8F0">
+<div class="g3">
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 12px 14px"><div style="font-size: 12px; color: #64748B">Open</div><div style="font-size: 22px; font-weight: 800">128</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 12px 14px"><div style="font-size: 12px; color: #64748B">In progress</div><div style="font-size: 22px; font-weight: 800; color: #1D4ED8">46</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 12px 14px"><div style="font-size: 12px; color: #64748B">Resolved in October</div><div style="font-size: 22px; font-weight: 800; color: #15803D">39</div></div>
+</div>
+<div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center">
+<div class="scrollx" style="display: flex; gap: 8px; flex: 1; min-width: 0">
+<sc-for list="{{issueChips}}" as="c" hint-placeholder-count="5"><button class="{{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for>
+</div>
+<button class="btn btn-primary btn-sm" onClick="{{openIssue}}">Report an issue</button>
+</div>
+</div>
+<sc-for list="{{issues}}" as="i" hint-placeholder-count="6">
+<button class="rowbtn" onClick="{{i.open}}">
+<span style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: 1; min-width: 0">
+<span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12px; color: #64748B"><span style="font-weight: 600">{{i.id}}</span><span>·</span><span>{{i.cat}}</span><span>·</span><span>{{i.ward}}</span></span>
+<span style="display: block; font-weight: 700; font-size: 16px; margin-top: 2px">{{i.title}}</span>
+<span style="display: block; font-size: 13px; color: #64748B; margin-top: 4px">Reported {{i.age}} · Assigned to {{i.assigned}}</span>
+<span style="display: flex; gap: 16px; font-size: 13px; color: #475569; margin-top: 8px"><span><strong>{{i.supports}}</strong> supporters</span><span><strong>{{i.comments}}</strong> comments</span></span>
+</span>
+<span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 4px 10px; white-space: nowrap; {{i.st}}">{{i.status}}</span>
+</span>
+</button>
+</sc-for>
+</sc-if>
+
+<!-- ================= ISSUE DETAIL ================= -->
+<sc-if value="{{isIssue}}" hint-placeholder-val="{{false}}">
+<div style="padding: 20px">
+<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; color: #64748B"><span style="font-weight: 600">{{iss.id}}</span><span>·</span><span>{{iss.cat}}</span><span>·</span><span>{{iss.ward}}</span><span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; {{iss.st}}">{{iss.status}}</span></div>
+<h2 style="margin: 8px 0 0; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25">{{iss.title}}</h2>
+<p style="margin: 10px 0 0; font-size: 15px; color: #334155">{{iss.desc}}</p>
+
+<ol aria-label="Issue progress" style="list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{iss.steps}}" as="s" hint-placeholder-count="4">
+<li style="display: flex; flex-direction: column; gap: 6px"><span style="height: 6px; border-radius: 999px; background: {{s.bar}}"></span><span style="font-size: 12px; font-weight: {{s.fw}}; color: {{s.color}}">{{s.label}}</span></li>
+</sc-for>
+</ol>
+
+<div class="g2" style="margin-top: 18px">
+<div style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 10px 12px"><div style="font-size: 12px; color: #64748B">Reported by</div><div style="font-weight: 600; font-size: 14px">{{iss.by}}</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 10px 12px"><div style="font-size: 12px; color: #64748B">Assigned to</div><div style="font-weight: 600; font-size: 14px">{{iss.assigned}}</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 10px 12px"><div style="font-size: 12px; color: #64748B">Reported</div><div style="font-weight: 600; font-size: 14px">{{iss.age}}</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 10px 12px"><div style="font-size: 12px; color: #64748B">Target response</div><div style="font-weight: 600; font-size: 14px">{{iss.sla}}</div></div>
+</div>
+
+<sc-if value="{{iss.hasImg}}" hint-placeholder-val="{{true}}">
+<figure style="margin: 16px 0 0; border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden">
+<div style="position: relative; aspect-ratio: 16 / 9; background: #F1F5F9">
+<img src="{{iss.imgSrc}}" alt="Photo attached to {{iss.id}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+<span style="position: absolute; left: 12px; top: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: rgba(255,255,255,0.92); color: #334155; border-radius: 999px; padding: 4px 10px">Illustrative image</span>
+</div>
+<figcaption style="padding: 8px 12px; font-size: 12px; color: #64748B; border-top: 1px solid #E2E8F0">Photo attached by reporter · location shared at ward level only</figcaption>
+</figure>
+</sc-if>
+
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px">
+<button class="{{iss.supCls}}" onClick="{{iss.onSupport}}">{{iss.supTxt}} · {{iss.supports}}</button>
+<button class="btn btn-secondary" onClick="{{iss.onFollow}}">{{iss.folTxt}}</button>
+<button class="btn btn-ghost" onClick="{{shareGeneric}}">Share</button>
+</div>
+
+<h3 style="margin: 28px 0 0; font-size: 17px; font-weight: 700">Updates</h3>
+<ol style="list-style: none; margin: 12px 0 0; padding: 0; border-left: 2px solid #E2E8F0">
+<sc-for list="{{iss.updates}}" as="u" hint-placeholder-count="3">
+<li style="position: relative; padding: 0 0 18px 20px">
+<span style="position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; background: {{u.dot}}"></span>
+<div style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap; font-size: 14px"><strong>{{u.who}}</strong><sc-if value="{{u.verified}}" hint-placeholder-val="{{true}}"><svg width="15" height="15" viewBox="0 0 24 24" role="img" aria-label="Verified account"><path fill="#2563EB" d="M12 1.6l2.5 1.8 3.1-.1.9 2.9 2.5 1.8-1 2.9 1 2.9-2.5 1.8-.9 2.9-3.1-.1L12 22.4l-2.5-1.8-3.1.1-.9-2.9-2.5-1.8 1-2.9-1-2.9 2.5-1.8.9-2.9 3.1.1z"></path><path d="M8 12.3l2.7 2.6L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if><span style="color: #64748B">· {{u.when}}</span></div>
+<div style="font-size: 14px; color: #334155; margin-top: 2px">{{u.text}}</div>
+<div style="font-size: 12px; color: #64748B; margin-top: 4px">Source: {{u.src}}</div>
+</li>
+</sc-for>
+</ol>
+
+<h3 style="margin: 12px 0 0; font-size: 17px; font-weight: 700">Comments</h3>
+<div style="display: flex; gap: 10px; margin-top: 12px">
+<input class="input" placeholder="Add a constructive comment…" aria-label="Add a comment">
+<button class="btn btn-primary" onClick="{{commentPosted}}">Reply</button>
+</div>
+<div style="margin-top: 12px; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{issueComments}}" as="c" hint-placeholder-count="3">
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 12px 14px">
+<div style="font-size: 14px"><strong>{{c.who}}</strong> <span style="color: #64748B">· {{c.when}}</span></div>
+<div style="font-size: 14px; color: #334155; margin-top: 2px">{{c.text}}</div>
+</div>
+</sc-for>
+<div style="font-size: 13px; color: #64748B; display: flex; gap: 8px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>1 comment hidden by moderators for sharing a phone number. Comments are moderated under the community guidelines.</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ================= REPRESENTATIVES DIRECTORY ================= -->
+<sc-if value="{{isReps}}" hint-placeholder-val="{{false}}">
+<div style="padding: 16px 20px; border-bottom: 1px solid #E2E8F0">
+<label style="position: relative; display: block">
+<span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94A3B8; display: flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"></path></svg></span>
+<input class="input" style="padding-left: 42px; border-radius: 999px" placeholder="Search by name, constituency or office" aria-label="Search representatives" value="{{repQuery}}" onChange="{{onRepQuery}}">
+</label>
+<div class="scrollx" style="display: flex; gap: 8px; margin-top: 12px">
+<sc-for list="{{repChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for>
+</div>
+<div style="font-size: 12px; color: #64748B; margin-top: 10px">Listed in alphabetical order within each office. Verification criteria are identical for every party and independent.</div>
+</div>
+<div class="g2" style="padding: 16px 20px 32px">
+<sc-for list="{{repList}}" as="r" hint-placeholder-count="6">
+<div style="border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: #fff">
+<div style="display: flex; gap: 12px; align-items: center">
+<div style="width: 52px; height: 52px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; {{r.av}}" aria-hidden="true">{{r.initials}}</div>
+<div style="min-width: 0">
+<div style="display: flex; align-items: center; gap: 4px"><button class="namebtn" onClick="{{r.open}}">{{r.name}}</button><svg width="16" height="16" viewBox="0 0 24 24" role="img" aria-label="Verified account" style="flex: 0 0 auto"><path fill="#2563EB" d="M12 1.6l2.5 1.8 3.1-.1.9 2.9 2.5 1.8-1 2.9 1 2.9-2.5 1.8-.9 2.9-3.1-.1L12 22.4l-2.5-1.8-3.1.1-.9-2.9-2.5-1.8 1-2.9-1-2.9 2.5-1.8.9-2.9 3.1.1z"></path><path d="M8 12.3l2.7 2.6L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div style="font-size: 13px; color: #64748B">{{r.role}}</div>
+</div>
+</div>
+<div style="font-size: 12px; color: #475569">{{r.affLine}}</div>
+<div style="display: flex; gap: 14px; font-size: 12px; color: #64748B"><span><strong style="color: #1E293B">{{r.followers}}</strong> followers</span><span><strong style="color: #1E293B">{{r.response}}</strong> response</span></div>
+<div style="display: flex; gap: 8px; margin-top: auto">
+<button class="btn btn-secondary btn-sm" style="flex: 1" onClick="{{r.open}}">View profile</button>
+<button class="{{r.followCls}}" style="flex: 1" onClick="{{r.onFollow}}">{{r.followTxt}}</button>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- ================= PROJECTS ================= -->
+<sc-if value="{{isProjects}}" hint-placeholder-val="{{false}}">
+<div style="padding: 16px 20px; border-bottom: 1px solid #E2E8F0">
+<div class="scrollx" style="display: flex; gap: 8px">
+<sc-for list="{{projChips}}" as="c" hint-placeholder-count="4"><button class="{{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for>
+</div>
+<div style="font-size: 12px; color: #64748B; margin-top: 10px">Budgets and progress figures are illustrative. Each card names its source document and whether figures were independently checked.</div>
+</div>
+<div style="padding: 16px 20px 32px; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{projects}}" as="j" hint-placeholder-count="5">
+<div style="border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px 18px; background: #fff">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<img src="{{j.imgSrc}}" alt="" style="width: 104px; height: 68px; border-radius: 10px; object-fit: cover; flex: 0 0 auto; border: 1px solid #E2E8F0">
+<div style="flex: 1; min-width: 0">
+<div style="font-weight: 700; font-size: 16px">{{j.name}}</div>
+<div style="font-size: 13px; color: #64748B; margin-top: 2px">{{j.dept}} · {{j.loc}}</div>
+</div>
+<span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 4px 10px; white-space: nowrap; {{j.st}}">{{j.status}}</span>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 14px"><span style="color: #64748B">Physical progress</span><strong>{{j.pct}}%</strong></div>
+<div style="height: 8px; border-radius: 999px; background: #E2E8F0; margin-top: 6px; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{j.pct}}%; background: {{j.fill}}"></div></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: #475569; margin-top: 12px"><span><strong>Budget:</strong> {{j.budget}}</span><span><strong>Target:</strong> {{j.target}}</span><span><strong>Updated:</strong> {{j.updated}}</span></div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #F1F5F9">
+<span style="font-size: 12px; color: #64748B">Source: {{j.src}} · <span style="{{j.claimInk}}">{{j.claim}}</span></span>
+<button class="{{j.folCls}}" onClick="{{j.onFollow}}">{{j.folTxt}}</button>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- ================= OPPORTUNITIES ================= -->
+<sc-if value="{{isOpps}}" hint-placeholder-val="{{false}}">
+<div style="padding: 16px 20px; border-bottom: 1px solid #E2E8F0">
+<div class="scrollx" style="display: flex; gap: 8px">
+<sc-for list="{{oppChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for>
+</div>
+<div style="display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 12px; background: #F8FAFC; font-size: 13px; color: #475569"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-4M12 8h.01"></path></svg>Applications happen on the issuing department’s portal. Nammude Naadu never charges fees or collects documents for government opportunities.</div>
+</div>
+<div style="padding: 16px 20px 32px; display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{opps}}" as="o" hint-placeholder-count="5">
+<div style="border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px 18px; background: #fff">
+<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"><span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; background: #F0FDF4; color: #15803D">{{o.type}}</span><span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; {{o.dlStyle}}">{{o.dl}}</span></div>
+<div style="font-weight: 700; font-size: 16px; margin-top: 8px">{{o.title}}</div>
+<div style="font-size: 13px; color: #64748B">{{o.dept}} · {{o.loc}}</div>
+<div style="font-size: 14px; color: #334155; margin-top: 8px"><strong>Eligibility:</strong> {{o.elig}}</div>
+<div style="display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap"><button class="btn btn-primary btn-sm" onClick="{{o.onApply}}">View on official portal</button><button class="{{o.saveCls}}" onClick="{{o.onSave}}">{{o.saveTxt}}</button></div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- ================= DISCUSSIONS ================= -->
+<sc-if value="{{isDisc}}" hint-placeholder-val="{{false}}">
+<div style="padding: 16px 20px; border-bottom: 1px solid #E2E8F0; display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+<div class="scrollx" style="display: flex; gap: 8px; flex: 1; min-width: 0">
+<sc-for list="{{discChips}}" as="c" hint-placeholder-count="5"><button class="{{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for>
+</div>
+<button class="btn btn-primary btn-sm" onClick="{{openDiscussion}}">Start a discussion</button>
+</div>
+<sc-for list="{{discussions}}" as="d" hint-placeholder-count="6">
+<button class="rowbtn" onClick="{{d.open}}">
+<span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12px"><span style="font-weight: 600; color: #6D28D9">{{d.tag}}</span><span style="color: #64748B">· {{d.where}}</span><sc-if value="{{d.responded}}" hint-placeholder-val="{{false}}"><span style="font-weight: 600; border-radius: 999px; padding: 2px 8px; background: #F5F3FF; color: #6D28D9; border: 1px solid #DDD6FE">{{d.respLabel}}</span></sc-if></span>
+<span style="display: block; font-weight: 700; font-size: 16px; margin-top: 4px">{{d.title}}</span>
+<span style="display: block; font-size: 14px; color: #475569; margin-top: 2px">{{d.excerpt}}</span>
+<span style="display: flex; gap: 16px; font-size: 13px; color: #64748B; margin-top: 8px; flex-wrap: wrap"><span>Started by {{d.by}}</span><span><strong style="color: #1E293B">{{d.replies}}</strong> replies</span><span>Last reply {{d.last}}</span></span>
+</button>
+</sc-for>
+</sc-if>
+
+<!-- ================= NOTIFICATIONS ================= -->
+<sc-if value="{{isNotif}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; justify-content: flex-end; padding: 10px 20px; border-bottom: 1px solid #E2E8F0"><button class="lnk" style="font-size: 13px" onClick="{{markRead}}">Mark all as read</button></div>
+<sc-for list="{{notifs}}" as="n" hint-placeholder-count="5">
+<button class="rowbtn" onClick="{{n.open}}" style="{{n.bg}}">
+<span style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 36px; height: 36px; border-radius: 50%; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; {{n.iconStyle}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.icon}}"></path></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px">{{n.text}}</span><span style="display: block; font-size: 12px; color: #64748B; margin-top: 2px">{{n.when}}</span></span>
+<sc-if value="{{n.unread}}" hint-placeholder-val="{{true}}"><span style="width: 9px; height: 9px; border-radius: 50%; background: #2563EB; margin-top: 6px" aria-label="Unread"></span></sc-if>
+</span>
+</button>
+</sc-for>
+</sc-if>
+
+<!-- ================= REPRESENTATIVE PORTAL ================= -->
+<sc-if value="{{isPortal}}" hint-placeholder-val="{{false}}">
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 14px 16px; border: 1px solid #DBEAFE; background: #F8FAFF; border-radius: 14px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #DBEAFE; color: #1D4ED8; font-weight: 700; display: flex; align-items: center; justify-content: center" aria-hidden="true">AR</div>
+<div style="flex: 1; min-width: 200px"><div style="font-weight: 700">Signed in as Anitha Raghavan <span style="font-weight: 500; color: #64748B">· MLA, Puzhakkara (sample account)</span></div><div style="font-size: 13px; color: #475569">Identity verified · 2 staff delegates · Posts from this portal carry the “Official account” source label</div></div>
+<button class="btn btn-secondary btn-sm" onClick="{{goRepSelf}}">View public profile</button>
+</div>
+<div class="g4">
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Followers</div><div style="font-size: 24px; font-weight: 800">48.2K</div><div style="font-size: 12px; color: #15803D">+1.3K this month</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Post reach · 7 days</div><div style="font-size: 24px; font-weight: 800">212K</div><div style="font-size: 12px; color: #64748B">Across 9 posts</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Open constituency issues</div><div style="font-size: 24px; font-weight: 800">37</div><div style="font-size: 12px; color: #B45309">6 past target date</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Median first response</div><div style="font-size: 24px; font-weight: 800">31h</div><div style="font-size: 12px; color: #64748B">Target: 48h</div></div>
+</div>
+<div class="split">
+<section style="border: 1px solid #E2E8F0; border-radius: 16px; padding: 18px">
+<h3 style="margin: 0; font-size: 16px; font-weight: 700">Publish an official update</h3>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 14px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Update type<select class="input"><option>Project update</option><option>Public announcement</option><option>Government opportunity</option><option>Poll</option><option>Response to an issue</option></select></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Message<textarea class="input" rows="4" style="resize: vertical" placeholder="Write in English or Malayalam…"></textarea></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Source document or link<input class="input" placeholder="e.g. PWD progress report, Oct 2026"></label>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #334155"><input type="checkbox" checked="" style="accent-color: #2563EB; width: 18px; height: 18px; margin-top: 1px"><span>Request independent verification of figures in this post. Until checked, the post shows “Not independently verified”.</span></label>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><button class="btn btn-primary" onClick="{{portalPublish}}">Publish</button><button class="btn btn-secondary" onClick="{{portalSchedule}}">Schedule</button></div>
+</div>
+</section>
+<section style="border: 1px solid #E2E8F0; border-radius: 16px; padding: 18px">
+<h3 style="margin: 0; font-size: 16px; font-weight: 700">Verification &amp; claims</h3>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 14px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>Account identity</span><span style="font-weight: 600; color: #15803D">Verified</span></div>
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>Claims verified (30 days)</span><span style="font-weight: 600">6</span></div>
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>Checks in progress</span><span style="font-weight: 600; color: #B45309">2</span></div>
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>Corrections issued</span><span style="font-weight: 600">1</span></div>
+<div style="font-size: 12px; color: #64748B; border-top: 1px solid #F1F5F9; padding-top: 10px">Correction notices stay attached to the original post and are shown to everyone who reposted it.</div>
+</div>
+</section>
+</div>
+<section style="border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden">
+<div style="padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid #E2E8F0"><h3 style="margin: 0; font-size: 16px; font-weight: 700">Constituency inbox</h3><button class="lnk" style="font-size: 13px" onClick="{{goIssues}}">All issues</button></div>
+<div style="overflow-x: auto">
+<div style="min-width: 640px">
+<div style="display: grid; grid-template-columns: 90px minmax(0, 2fr) minmax(0, 1fr) 90px 120px 110px; gap: 12px; padding: 10px 18px; background: #F8FAFC; font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.04em"><span>ID</span><span>Issue</span><span>Ward</span><span>Open</span><span>Status</span><span></span></div>
+<sc-for list="{{inbox}}" as="i" hint-placeholder-count="4">
+<div style="display: grid; grid-template-columns: 90px minmax(0, 2fr) minmax(0, 1fr) 90px 120px 110px; gap: 12px; padding: 12px 18px; border-top: 1px solid #F1F5F9; font-size: 14px; align-items: center"><span style="color: #64748B">{{i.id}}</span><span style="font-weight: 600">{{i.title}}</span><span style="color: #475569">{{i.ward}}</span><span style="color: {{i.ageInk}}">{{i.days}}</span><span><span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; white-space: nowrap; {{i.st}}">{{i.status}}</span></span><button class="btn btn-secondary btn-sm" onClick="{{i.open}}">Respond</button></div>
+</sc-for>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+<sc-if value="{{isAdmin}}" hint-placeholder-val="{{false}}">
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div class="g4">
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Reports awaiting review</div><div style="font-size: 24px; font-weight: 800">{{pendingCount}}</div><div style="font-size: 12px; color: #B45309">2 older than 12h</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Median review time</div><div style="font-size: 24px; font-weight: 800">3.2h</div><div style="font-size: 12px; color: #15803D">Within 24h target</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Verified accounts</div><div style="font-size: 24px; font-weight: 800">412</div><div style="font-size: 12px; color: #64748B">3 requests pending</div></div>
+<div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px"><div style="font-size: 12px; color: #64748B">Corrections · 7 days</div><div style="font-size: 24px; font-weight: 800">5</div><div style="font-size: 12px; color: #64748B">All attached to posts</div></div>
+</div>
+
+<section style="border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden">
+<div style="padding: 14px 18px; border-bottom: 1px solid #E2E8F0"><h3 style="margin: 0; font-size: 16px; font-weight: 700">Moderation queue</h3><div style="font-size: 13px; color: #64748B">Decisions are logged and visible to the author, who can appeal.</div></div>
+<div style="overflow-x: auto"><div style="min-width: 860px">
+<div style="display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr) 80px 120px 300px; gap: 12px; padding: 10px 18px; background: #F8FAFC; font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.04em"><span>Content</span><span>Reason</span><span>Reports</span><span>Status</span><span>Actions</span></div>
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr) 80px 120px 300px; gap: 12px; padding: 12px 18px; border-top: 1px solid #F1F5F9; font-size: 14px; align-items: center">
+<span><span style="display: block; font-weight: 600">{{q.what}}</span><span style="display: block; font-size: 12px; color: #64748B">{{q.who}} · {{q.when}}</span></span>
+<span style="color: #475569">{{q.reason}}</span>
+<span style="font-variant-numeric: tabular-nums">{{q.reports}}</span>
+<span><span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; white-space: nowrap; {{q.st}}">{{q.status}}</span></span>
+<span style="display: flex; gap: 6px; flex-wrap: wrap"><button class="btn btn-secondary btn-sm" onClick="{{q.keep}}">Keep</button><button class="btn btn-violet btn-sm" onClick="{{q.correct}}">Add note</button><button class="btn btn-danger btn-sm" onClick="{{q.remove}}">Remove</button></span>
+</div>
+</sc-for>
+</div></div>
+</section>
+
+<div class="split">
+<section style="border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden">
+<div style="padding: 14px 18px; border-bottom: 1px solid #E2E8F0"><h3 style="margin: 0; font-size: 16px; font-weight: 700">Verification requests</h3></div>
+<sc-for list="{{verifs}}" as="v" hint-placeholder-count="3">
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 12px 18px; border-top: 1px solid #F1F5F9">
+<div style="flex: 1; min-width: 200px"><div style="font-weight: 600; font-size: 14px">{{v.name}}</div><div style="font-size: 12px; color: #64748B">{{v.claim}} · {{v.docs}}</div></div>
+<sc-if value="{{v.pending}}" hint-placeholder-val="{{true}}"><span style="display: flex; gap: 6px"><button class="btn btn-success btn-sm" onClick="{{v.approve}}">Approve</button><button class="btn btn-secondary btn-sm" onClick="{{v.reject}}">Request info</button></span></sc-if>
+<sc-if value="{{v.done}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px; {{v.st}}">{{v.result}}</span></sc-if>
+</div>
+</sc-for>
+</section>
+<section style="border: 1px solid #E2E8F0; border-radius: 16px; padding: 14px 18px">
+<h3 style="margin: 0; font-size: 16px; font-weight: 700">Neutrality monitor</h3>
+<div style="font-size: 13px; color: #64748B; margin-top: 2px">Verified representative accounts by affiliation. One badge, one set of criteria.</div>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px">
+<sc-for list="{{neutral}}" as="n" hint-placeholder-count="4">
+<div><div style="display: flex; justify-content: space-between; font-size: 13px"><span>{{n.label}}</span><span style="font-weight: 600; font-variant-numeric: tabular-nums">{{n.count}}</span></div><div style="height: 8px; border-radius: 999px; background: #F1F5F9; margin-top: 4px; overflow: hidden"><div style="height: 100%; width: {{n.pct}}%; background: #94A3B8; border-radius: 999px"></div></div></div>
+</sc-for>
+</div>
+<div style="font-size: 12px; color: #64748B; margin-top: 12px">Party colours are never used for badges, buttons or charts.</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+</main>
+
+<!-- RIGHT RAIL -->
+<aside class="right" aria-label="Local context">
+<label style="position: relative; display: block">
+<span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94A3B8; display: flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"></path></svg></span>
+<input class="input" style="padding-left: 42px; border-radius: 999px; background: #fff" placeholder="Search Nammude Naadu" aria-label="Search">
+</label>
+
+<section style="background: #fff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px 0 8px">
+<h2 style="margin: 0; padding: 0 18px 8px; font-size: 17px; font-weight: 800; letter-spacing: -0.01em">Your representatives</h2>
+<sc-for list="{{railReps}}" as="r" hint-placeholder-count="5">
+<div style="display: flex; gap: 10px; align-items: center; padding: 8px 18px">
+<div style="width: 40px; height: 40px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; {{r.av}}" aria-hidden="true">{{r.initials}}</div>
+<div style="flex: 1; min-width: 0; line-height: 1.3">
+<div style="display: flex; align-items: center; gap: 3px"><button class="namebtn" style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" onClick="{{r.open}}">{{r.name}}</button><svg width="15" height="15" viewBox="0 0 24 24" role="img" aria-label="Verified account" style="flex: 0 0 auto"><path fill="#2563EB" d="M12 1.6l2.5 1.8 3.1-.1.9 2.9 2.5 1.8-1 2.9 1 2.9-2.5 1.8-.9 2.9-3.1-.1L12 22.4l-2.5-1.8-3.1.1-.9-2.9-2.5-1.8 1-2.9-1-2.9 2.5-1.8.9-2.9 3.1.1z"></path><path d="M8 12.3l2.7 2.6L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div style="font-size: 12px; color: #64748B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.role}}</div>
+</div>
+<button class="{{r.followCls}}" onClick="{{r.onFollow}}">{{r.followTxt}}</button>
+</div>
+</sc-for>
+<div style="padding: 6px 18px 8px"><button class="lnk" style="font-size: 14px" onClick="{{goReps}}">Browse the directory</button></div>
+</section>
+
+<section style="background: #fff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px 0 8px">
+<h2 style="margin: 0; padding: 0 18px 8px; font-size: 17px; font-weight: 800; letter-spacing: -0.01em">Local opportunities</h2>
+<sc-for list="{{railOpps}}" as="o" hint-placeholder-count="3">
+<button class="rowbtn" style="border: 0; padding: 10px 18px" onClick="{{goOpps}}">
+<span style="display: block; font-size: 12px; color: #15803D; font-weight: 600">{{o.type}}</span>
+<span style="display: block; font-weight: 600; font-size: 14px; margin-top: 1px">{{o.title}}</span>
+<span style="display: block; font-size: 12px; color: #64748B; margin-top: 2px">{{o.dept}} · <span style="{{o.dlInk}}">{{o.dl}}</span></span>
+</button>
+</sc-for>
+<div style="padding: 6px 18px 8px"><button class="lnk" style="font-size: 14px" onClick="{{goOpps}}">See all 7 opportunities</button></div>
+</section>
+
+<section style="background: #fff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 16px 0 10px">
+<h2 style="margin: 0; padding: 0 18px 8px; font-size: 17px; font-weight: 800; letter-spacing: -0.01em">Upcoming events</h2>
+<sc-for list="{{events}}" as="e" hint-placeholder-count="4">
+<div style="display: flex; gap: 12px; align-items: center; padding: 8px 18px">
+<div style="width: 46px; text-align: center; border-radius: 10px; border: 1px solid #DBEAFE; background: #EFF6FF; color: #1D4ED8; padding: 4px 0; line-height: 1.15; flex: 0 0 auto"><div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em">{{e.mon}}</div><div style="font-size: 18px; font-weight: 800">{{e.day}}</div></div>
+<div style="min-width: 0; font-size: 13px; line-height: 1.35"><div style="font-weight: 600; font-size: 14px">{{e.title}}</div><div style="color: #64748B">{{e.time}} · {{e.place}}</div></div>
+</div>
+</sc-for>
+</section>
+
+<div style="font-size: 12px; color: #64748B; line-height: 1.7; padding: 0 6px">About · Community guidelines · Verification policy · Corrections policy · Accessibility<br>Illustrative prototype — sample content only.</div>
+</aside>
+</div>
+
+<!-- ================= COMPOSE DIALOG ================= -->
+<sc-if value="{{composeOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: fixed; inset: 0; z-index: 50; background: rgba(15,23,42,0.45); display: flex; align-items: flex-start; justify-content: center; padding: 64px 16px 16px; overflow-y: auto">
+<div role="dialog" aria-modal="true" aria-label="Create post" style="width: 100%; max-width: 600px; background: #fff; border-radius: 20px; box-shadow: 0 24px 64px rgba(15,23,42,0.24); overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 12px 12px 20px; border-bottom: 1px solid #E2E8F0">
+<div style="font-weight: 700; font-size: 16px">{{composeHeading}}</div>
+<button class="iconbtn" aria-label="Close" onClick="{{closeCompose}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+</div>
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 14px">
+<textarea class="input" rows="5" style="resize: vertical; font-size: 16px" placeholder="Share an update, ask a question or report something in your ward…" aria-label="Post text" value="{{composeText}}" onChange="{{onComposeText}}"></textarea>
+<div class="g2">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Post type
+<select class="input" value="{{composeType}}" onChange="{{onComposeType}}">
+<option value="text">General post</option><option value="discussion">Community discussion</option><option value="issue">Civic complaint</option><option value="poll">Poll</option><option value="event">Event</option>
+</select></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Location
+<input class="input" value="{{composeLoc}}" onChange="{{onComposeLoc}}" aria-label="Location"></label>
+</div>
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; font-size: 13px; color: #475569"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-4M12 8h.01"></path></svg>Your post will be labelled “Source: Citizen post”. Complaints are shared at ward level; never post phone numbers or house addresses.</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 20px 16px; border-top: 1px solid #E2E8F0">
+<span style="font-size: 13px; color: #64748B">{{composeCount}}/500</span>
+<div style="display: flex; gap: 8px"><button class="btn btn-secondary" onClick="{{closeCompose}}">Cancel</button><button class="btn btn-primary" onClick="{{publishPost}}">Post</button></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ================= REPORT DIALOG ================= -->
+<sc-if value="{{reportOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: fixed; inset: 0; z-index: 50; background: rgba(15,23,42,0.45); display: flex; align-items: center; justify-content: center; padding: 16px">
+<div role="dialog" aria-modal="true" aria-label="Report post" style="width: 100%; max-width: 460px; background: #fff; border-radius: 20px; box-shadow: 0 24px 64px rgba(15,23,42,0.24); padding: 20px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px"><div><div style="font-weight: 800; font-size: 18px">Report this post</div><div style="font-size: 13px; color: #64748B; margin-top: 2px">Moderators review reports within 24 hours. The author is not told who reported.</div></div><button class="iconbtn" aria-label="Close" onClick="{{closeReport}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px">
+<sc-for list="{{reportReasons}}" as="r" hint-placeholder-count="5"><label class="radio"><input type="radio" name="report-reason" checked="{{r.on}}" onChange="{{r.pick}}"><span>{{r.label}}</span></label></sc-for>
+</div>
+<div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px"><button class="btn btn-secondary" onClick="{{closeReport}}">Cancel</button><button class="btn btn-primary" onClick="{{submitReport}}">Submit report</button></div>
+</div>
+</div>
+</sc-if>
+
+<!-- ================= TOAST ================= -->
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}">
+<div role="status" style="position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 60; background: #1E293B; color: #fff; font-size: 14px; padding: 12px 18px; border-radius: 12px; box-shadow: 0 12px 32px rgba(15,23,42,0.25); max-width: calc(100% - 32px)">{{toast}}</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startScreen":{"editor":"enum","options":["feed","issues","issue","reps","rep","projects","opportunities","discussions","notifications","portal","admin"],"default":"feed"},"postsPerPage":{"editor":"int","default":10,"min":5,"max":30},"showNotice":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":3600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: (props && props.startScreen) || 'feed', prev: 'feed',
+      feedTab: 'all', typeFilter: 'all', visible: (props && props.postsPerPage) || 10,
+      liked: {}, reposted: {}, bookmarked: {}, votes: {}, muted: {},
+      followed: { anitha: 1, sreeja: 1, collector: 1, joseph: 1, meera: 1, pwd: 1, suresh: 1 },
+      menuFor: null, rep: 'anitha', issue: 'NN-2041',
+      issueFilter: 'All', repFilter: 'All', repQuery: '', projFilter: 'All', oppFilter: 'All', discFilter: 'All',
+      supported: {}, followedIssues: {}, followedProjects: {}, savedOpps: {},
+      composeOpen: false, composeText: '', composeType: 'text', composeLoc: 'Ward 7, Thekkumpuram', replyTo: null,
+      reportFor: null, reportReason: 0, toast: '', newPosts: [], notifRead: false,
+      queueActions: {}, verifActions: {}
+    };
+  }
+  componentDidUpdate(prev) {
+    if (prev.startScreen !== this.props.startScreen && this.props.startScreen) this.setState({ screen: this.props.startScreen });
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+  flash(msg) {
+    clearTimeout(this._t);
+    this.setState({ toast: msg, menuFor: null });
+    this._t = setTimeout(() => this.setState({ toast: '' }), 2600);
+  }
+  renderVals() {
+    const s = this.state;
+    const set = (o) => this.setState(o);
+    const top = () => { try { window.scrollTo(0, 0); } catch (e) {} };
+    const go = (screen, extra) => () => { set(Object.assign({ screen: screen, prev: s.screen, menuFor: null }, extra || {})); top(); };
+    const fmt = (n) => n >= 1000 ? (Math.round(n / 100) / 10).toString().replace(/\.0$/, '') + 'K' : (n ? String(n) : '');
+
+    const I = {
+      home: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
+      flag: 'M5 21V4M5 4h11l-1.5 4L16 12H5',
+      users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+      bars: 'M4 20h16M7 20v-6M12 20V6M17 20V10',
+      brief: 'M3 7h18v13H3zM8 7V4h8v3M3 12h18',
+      msg: 'M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z',
+      bell: 'M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0',
+      portal: 'M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6',
+      admin: 'M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1M15 4v4M9 10v4M17 16v4',
+      mega: 'M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12',
+      cal: 'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4',
+      poll: 'M5 20V10M12 20V4M19 20v-7',
+      shieldOk: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4',
+      info: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-4M12 8h.01',
+      clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 7v5l3 2',
+      pencil: 'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z'
+    };
+
+    const AV = {
+      rep: 'border-radius: 50%; background: #DBEAFE; color: #1D4ED8',
+      org: 'border-radius: 12px; background: #1E293B; color: #FFFFFF',
+      citizen: 'border-radius: 50%; background: #F1F5F9; color: #475569',
+      group: 'border-radius: 12px; background: #F1F5F9; color: #475569'
+    };
+
+    const A = {
+      anitha: { name: 'Anitha Raghavan', handle: '@anitha.mla', role: 'MLA · Puzhakkara', cat: 'MLA', kind: 'rep', aff: 'Harbour Front', initials: 'AR', followers: '48.2K', response: '86%', projects: 12, bio: 'Member of the Legislative Assembly for Puzhakkara. Posting project updates, office hours and replies to constituency issues. Office hours: Mondays 10 AM – 1 PM, Puzhakkara MLA office.', verifNote: 'confirmed against the official declaration of result on Jan 12, 2026 (illustrative).' },
+      joseph: { name: 'Joseph Thomas', handle: '@josephthomas.mp', role: 'MP · Kadalthuram', cat: 'MP', kind: 'rep', aff: 'People’s Coast Alliance', initials: 'JT', followers: '91.4K', response: '74%', projects: 8, bio: 'Member of Parliament, Kadalthuram. Coastal livelihoods, harbour infrastructure and youth employment.', verifNote: 'confirmed against the official declaration of result (illustrative).' },
+      meera: { name: 'Dr. Meera Varghese', handle: '@health.minister', role: 'Minister for Health', cat: 'Minister', kind: 'rep', aff: 'Harbour Front', initials: 'MV', followers: '214K', response: '68%', projects: 21, bio: 'Minister for Health (fictional office holder). Public health programmes, PHC upgrades and health camps.', verifNote: 'confirmed through the department’s official communication (illustrative).' },
+      rahman: { name: 'Abdul Rahman K', handle: '@fisheries.minister', role: 'Minister for Fisheries', cat: 'Minister', kind: 'rep', aff: 'Green Valley Party', initials: 'RK', followers: '120K', response: '71%', projects: 9, bio: 'Minister for Fisheries (fictional office holder). Welfare schemes for fisherfolk, harbours and coastal safety.', verifNote: 'confirmed through the department’s official communication (illustrative).' },
+      sreeja: { name: 'Sreeja P', handle: '@sreeja.ward7', role: 'Panchayat Member · Ward 7, Thekkumpuram', cat: 'Panchayat', kind: 'rep', aff: 'Independent', initials: 'SP', followers: '3.1K', response: '93%', projects: 4, bio: 'Elected member for Ward 7. Ward sabha notices, fund priorities and day-to-day ward issues.', verifNote: 'confirmed against the Panchayat election result notice (illustrative).' },
+      suresh: { name: 'K. Suresh', handle: '@thekkumpuram.president', role: 'Panchayat President · Thekkumpuram', cat: 'Panchayat', kind: 'rep', aff: 'People’s Coast Alliance', initials: 'KS', followers: '9.8K', response: '81%', projects: 15, bio: 'President, Thekkumpuram Grama Panchayat. Plan fund projects, Anganwadis and sanitation.', verifNote: 'confirmed against the Panchayat election result notice (illustrative).' },
+      collector: { name: 'District Collectorate', handle: '@collector.sample', role: 'Government account · Sample District', cat: 'Official', kind: 'org', initials: 'DC', followers: '310K', response: '79%', projects: 30, bio: 'Official account of the District Collectorate, Sample District (fictional). Advisories, notices and district-level updates.', verifNote: 'confirmed through an official government email domain (illustrative).' },
+      pwd: { name: 'PWD Roads Division', handle: '@pwd.puzhakkara', role: 'Government account · Puzhakkara', cat: 'Official', kind: 'org', initials: 'PW', followers: '22K', response: '64%', projects: 18, bio: 'Roads Division, Public Works Department (fictional unit). Traffic advisories and road project progress.', verifNote: 'confirmed through an official government email domain (illustrative).' },
+      village: { name: 'Puzhakkara Village Office', handle: '@village.puzhakkara', role: 'Government account', cat: 'Official', kind: 'org', initials: 'VO', followers: '6.4K', response: '88%', projects: 0, bio: 'Village Office, Puzhakkara (fictional). Certificate camps and revenue notices.', verifNote: 'confirmed through an official government email domain (illustrative).' },
+      employ: { name: 'District Employment Exchange', handle: '@employment.sample', role: 'Government account', cat: 'Official', kind: 'org', initials: 'EE', followers: '41K', response: '70%', projects: 0, bio: 'Recruitment notices and job fairs for Sample District (fictional).', verifNote: 'confirmed through an official government email domain (illustrative).' },
+      dlm: { name: 'Digital Literacy Mission', handle: '@digital.literacy', role: 'Government account · State programme', cat: 'Official', kind: 'org', initials: 'DL', followers: '18K', response: '77%', projects: 3, bio: 'Free digital skills courses for residents (fictional programme).', verifNote: 'confirmed through an official government email domain (illustrative).' },
+      faisal: { name: 'Faisal K', handle: '@faisal.k', role: 'Citizen · Ward 12, Thekkumpuram', kind: 'citizen', initials: 'FK' },
+      lakshmi: { name: 'Lakshmi Nair', handle: '@lakshmi.n', role: 'Citizen · Puzhakkara', kind: 'citizen', initials: 'LN' },
+      arjun: { name: 'Arjun Menon', handle: '@arjun.m', role: 'Citizen · Vellimala', kind: 'citizen', initials: 'AM' },
+      ramla: { name: 'Ramla Beevi', handle: '@ramla.b', role: 'Citizen · Ward 3, Thekkumpuram', kind: 'citizen', initials: 'RB' },
+      neha: { name: 'Neha Joseph', handle: '@neha.j', role: 'Citizen · Puzhakkara', kind: 'citizen', initials: 'NJ' },
+      vishnu: { name: 'Vishnu Das', handle: '@vishnu.d', role: 'Citizen · Ward 7, Thekkumpuram', kind: 'citizen', initials: 'VD' },
+      thomas: { name: 'Thomas Kurian', handle: '@thomas.k', role: 'Citizen · Kadalthuram', kind: 'citizen', initials: 'TK' },
+      anjali: { name: 'Anjali R', handle: '@anjali.r', role: 'Citizen · Ward 5, Vellimala', kind: 'citizen', initials: 'AR' },
+      hari: { name: 'Hari Prasad', handle: '@hari.p', role: 'Citizen · Thekkumpuram', kind: 'citizen', initials: 'HP' },
+      priya: { name: 'Priya Mohan', handle: '@priya.m', role: 'Citizen · Ward 9, Puzhakkara', kind: 'citizen', initials: 'PM' },
+      forum: { name: 'Puzhakkara Residents’ Forum', handle: '@prforum', role: 'Community group · identity not verified', kind: 'group', initials: 'RF' },
+      anon: { name: 'Removed', handle: '', role: '', kind: 'citizen', initials: '—' },
+      me: { name: 'Devika S', handle: '@devika.s', role: 'Citizen · Ward 7, Thekkumpuram', kind: 'citizen', initials: 'DS' }
+    };
+    const author = (k) => {
+      const a = A[k];
+      const isV = a.kind === 'rep' || a.kind === 'org';
+      return Object.assign({}, a, {
+        verified: isV, hasProfile: isV, noProfile: !isV, av: AV[a.kind],
+        hasAff: !!a.aff, affLabel: a.aff ? a.aff + ' (fictional party)' : '',
+        roleLine: a.role + (a.aff ? ' · ' + a.aff + ' (fictional party)' : ''),
+        short: a.name.split(' ')[0]
+      });
+    };
+
+    const ISS = {
+      'NN-2041': { title: 'Streetlights out on Market Road', cat: 'Electricity & lighting', ward: 'Ward 12, Thekkumpuram', status: 'In progress', supports: 214, comments: 38, assigned: 'Panchayat electrical section', age: '9 days ago', by: 'Faisal K (citizen)', desc: 'About 14 streetlights between the bus stand and the mosque junction have been off since Oct 9. Shops close early and pedestrians walk in the dark after the 7:30 PM bus.' },
+      'NN-2038': { title: 'Irregular drinking water supply', cat: 'Water supply', ward: 'Ward 3, Thekkumpuram', status: 'Acknowledged', supports: 342, comments: 61, assigned: 'Water Authority sub-division', age: '8 days ago', by: 'Ramla Beevi (citizen)', desc: 'Piped supply arrives for under an hour, around 4 AM, for more than a week. Elderly residents depend on the public tap.' },
+      'NN-2035': { title: 'Waste dumping behind Govt LP School', cat: 'Sanitation', ward: 'Ward 5, Vellimala', status: 'Open', supports: 128, comments: 22, assigned: 'Not yet assigned', age: '2 days ago', by: 'Anjali R (citizen)', desc: 'Bags of household waste are being dumped behind the school wall at night, for the third time this month.' },
+      'NN-2029': { title: 'Potholes on Kadavu–Ferry road', cat: 'Roads', ward: 'Puzhakkara', status: 'Resolved', supports: 506, comments: 94, assigned: 'PWD Roads Division', age: '1 month ago', by: 'Thomas Kurian (citizen)', desc: 'Deep potholes on the 800 m stretch to the ferry point, dangerous for two-wheelers after rain.' },
+      'NN-2027': { title: 'Damaged bus stop shelter', cat: 'Transport', ward: 'Ward 9, Puzhakkara', status: 'In progress', supports: 77, comments: 12, assigned: 'Panchayat engineering wing', age: '3 weeks ago', by: 'Priya Mohan (citizen)', desc: 'The roof sheet of the shelter near the temple stop is broken and leaks onto the seating.' },
+      'NN-2022': { title: 'Blocked drain near fish market', cat: 'Drainage', ward: 'Kadalthuram', status: 'Open', supports: 191, comments: 30, assigned: 'Municipal health wing', age: '4 days ago', by: 'Thomas Kurian (citizen)', desc: 'Drain beside the fish market overflows onto the road at high tide.' },
+      'NN-2019': { title: 'Stray dog concerns near children’s park', cat: 'Public safety', ward: 'Ward 2, Thekkumpuram', status: 'Acknowledged', supports: 263, comments: 47, assigned: 'Veterinary dispensary', age: '2 weeks ago', by: 'Hari Prasad (citizen)', desc: 'Parents report a pack of dogs near the park entrance during school hours.' },
+      'NN-2014': { title: 'Footpath blocked on Temple Road', cat: 'Roads', ward: 'Puzhakkara', status: 'Open', supports: 98, comments: 15, assigned: 'Not yet assigned', age: '5 days ago', by: 'Neha Joseph (citizen)', desc: 'Footpath on Temple Road is blocked by parked vehicles and construction material, pushing pedestrians onto the road.' }
+    };
+    const ST = {
+      'Open': 'background: #FFFBEB; color: #B45309',
+      'Acknowledged': 'background: #F1F5F9; color: #334155',
+      'In progress': 'background: #EFF6FF; color: #1D4ED8',
+      'Resolved': 'background: #F0FDF4; color: #15803D'
+    };
+
+    const POSTS = [
+      { id: 'p1', a: 'anitha', t: '2h', dt: 'Oct 18, 2026 · 9:12 AM', type: 'project', text: 'Progress update on the Puzhakkara–Kadavu road: resurfacing of the 6.4 km stretch is now 78% complete. The remaining 1.4 km near Kadavu junction will be finished by mid-November, weather permitting.\n\nNight work continues between 10 PM and 5 AM to reduce traffic disruption. Please keep reporting any drainage problems along the new stretch.', ml: 'പുഴക്കര–കടവ് റോഡിന്റെ പണി 78% പൂർത്തിയായി.', img: 'Resurfaced stretch near Kadavu junction', tone: 'blue', project: { name: 'Puzhakkara–Kadavu road resurfacing', pct: 78, meta: '₹6.8 crore · target Nov 15, 2026' }, loc: 'Puzhakkara', src: 'Official account', claim: 'verified', claimBy: 'PWD site inspection report, Oct 16 (illustrative)', r: 88, rp: 210, l: 1240, b: 96 },
+      { id: 'p2', a: 'faisal', t: '3h', dt: 'Oct 18, 2026 · 8:05 AM', type: 'issue', text: 'Streetlights on Market Road have been off for 9 days now, from the bus stand to the mosque junction. Shops close early and it’s unsafe for people walking back from the evening bus. Adding a photo taken last night at 8:30 PM.', img: 'Market Road at 8:30 PM, lights off', tone: 'slate', issue: 'NN-2041', loc: 'Ward 12, Thekkumpuram', src: 'Citizen report', claim: 'unverified', r: 41, rp: 63, l: 388, b: 12 },
+      { id: 'p3', a: 'collector', t: '4h', dt: 'Oct 18, 2026 · 7:30 AM', type: 'announcement', text: 'Flood preparedness drill — Saturday, Oct 25, 7:00 AM at Kadalthuram beach.\n\nFire & Rescue, Coastal Police and health teams will demonstrate evacuation routes and first response. Residents of Wards 1–6 are encouraged to attend. This is a drill only: no evacuation order is in place.', loc: 'Kadalthuram', src: 'Official notice DC/DM/2026/118 (illustrative)', claim: 'none', r: 26, rp: 402, l: 960, b: 230 },
+      { id: 'p4', a: 'meera', t: '5h', dt: 'Oct 18, 2026 · 6:40 AM', type: 'announcement', text: 'Free health screening camps at 14 Primary Health Centres across the district on Sunday, Oct 26, 9 AM – 3 PM. Screening for diabetes, hypertension and anaemia, plus eye checks for adults above 40. No registration needed — please bring any previous prescriptions.', ml: '14 പ്രാഥമികാരോഗ്യ കേന്ദ്രങ്ങളിൽ സൗജന്യ ആരോഗ്യ ക്യാമ്പ്.', loc: 'Sample District', src: 'Official account', claim: 'verified', claimBy: 'schedule confirmed with District Medical Office (illustrative)', r: 64, rp: 820, l: 3100, b: 410 },
+      { id: 'p5', a: 'sreeja', t: '6h', dt: 'Oct 18, 2026 · 5:15 AM', type: 'poll', text: 'Ward 7 development fund for 2026–27: the ward sabha will finalise priorities next week. Which should come first? Your vote helps prepare the agenda — the final decision is made at the ward sabha.', poll: { opts: [['Drainage on Church Lane', 341], ['Footpath on School Road', 252], ['Reading room & library', 146], ['Covered bus shelter', 73]], ends: '2 days left' }, loc: 'Ward 7, Thekkumpuram', src: 'Official account', claim: 'none', r: 57, rp: 34, l: 290, b: 18 },
+      { id: 'p6', a: 'employ', t: '7h', dt: 'Oct 18, 2026 · 4:00 AM', type: 'opportunity', text: 'Recruitment notice: 40 Anganwadi helper positions across Puzhakkara and Thekkumpuram blocks. Applications are open until Nov 5. Apply only through the official portal — no agents or fees are involved in this recruitment.', opp: { title: 'Anganwadi Helper · 40 posts', dept: 'Women & Child Development (illustrative)', deadline: 'Nov 5, 2026', elig: 'Women aged 18–46, SSLC pass, resident of the district' }, loc: 'Puzhakkara & Thekkumpuram blocks', src: 'Official notice (illustrative)', claim: 'none', r: 112, rp: 1400, l: 2200, b: 1900 },
+      { id: 'p7', a: 'lakshmi', t: '8h', dt: 'Oct 18, 2026 · 3:20 AM', type: 'discussion', text: 'Open question for everyone who shops at Puzhakkara market: should we go fully plastic-bag free from January?\n\nVendors I spoke to are worried about the cost of cloth bags, but the canal behind the market is choked every monsoon. What would make this work for small vendors?', loc: 'Puzhakkara market', src: 'Citizen post', claim: 'none', r: 142, rp: 38, l: 510, b: 44 },
+      { id: 'p8', a: 'joseph', t: '9h', dt: 'Oct 17, 2026 · 6:10 PM', type: 'text', text: 'Raised the delay in Kadalthuram fishing harbour dredging during Question Hour today. The Ministry has confirmed a revised timeline: dredging resumes after the monsoon closure, with completion targeted for March 2027. ₹24 crore has been sanctioned for this phase. I will share the written reply once it is published.', correction: 'Correction · Oct 18, 11:40 AM — An earlier version of this post said ₹42 crore. The sanctioned amount is ₹24 crore. Edited by the account holder; everyone who reposted the earlier version has been notified.', loc: 'Kadalthuram', src: 'Official account', claim: 'correction', r: 96, rp: 310, l: 1800, b: 120 },
+      { id: 'p9', a: 'arjun', t: '10h', dt: 'Oct 17, 2026 · 5:00 PM', type: 'photo', text: 'Sunday clean-up at Vellimala lake: 60 volunteers, 38 bags of plastic and glass collected along the eastern bank. Thanks to the Panchayat for the gloves and the pickup truck. Next drive is Nov 9 — everyone welcome.', img: 'Volunteers on the eastern bank, Vellimala lake', tone: 'green', loc: 'Vellimala lake', src: 'Citizen post', claim: 'none', r: 33, rp: 120, l: 870, b: 25 },
+      { id: 'p10', a: 'pwd', t: '12h', dt: 'Oct 17, 2026 · 3:00 PM', type: 'announcement', text: 'Traffic advisory: Thodu bridge on the Puzhakkara–Kadalthuram road will be closed to heavy vehicles from Oct 21 to Oct 30 for expansion joint repairs. Two-wheelers and cars may use one lane under signal control. Buses will divert via Church Road.', loc: 'Thodu bridge, Puzhakkara', src: 'Official notice (illustrative)', claim: 'none', r: 48, rp: 530, l: 740, b: 160 },
+      { id: 'p11', a: 'ramla', t: '14h', dt: 'Oct 17, 2026 · 1:10 PM', type: 'issue', text: 'Drinking water has been irregular in Ward 3 for over a week — supply comes for barely an hour, and at 4 AM. Elderly residents can’t carry water from the public tap.', ml: 'മൂന്നാം വാർഡിൽ കഴിഞ്ഞ ഒരാഴ്ചയായി കുടിവെള്ളം കൃത്യമായി കിട്ടുന്നില്ല.', issue: 'NN-2038', loc: 'Ward 3, Thekkumpuram', src: 'Citizen report', claim: 'unverified', r: 61, rp: 90, l: 450, b: 14 },
+      { id: 'p12', a: 'suresh', t: '1d', dt: 'Oct 17, 2026 · 10:00 AM', type: 'project', text: 'The new Anganwadi building in Ward 7 is complete and opens on Nov 1. It has a ramp, a kitchen with a gas connection, and a fenced play area for 45 children. Built from the 2025–26 Panchayat plan fund.', img: 'New Anganwadi building, Ward 7', tone: 'violet', project: { name: 'Ward 7 Anganwadi building', pct: 100, meta: '₹38 lakh · completed Oct 15, 2026' }, loc: 'Ward 7, Thekkumpuram', src: 'Official account', claim: 'verified', claimBy: 'completion certified by Block engineer (illustrative)', r: 29, rp: 75, l: 690, b: 21 },
+      { id: 'p13', a: 'dlm', t: '1d', dt: 'Oct 17, 2026 · 9:00 AM', type: 'opportunity', text: 'Free 4-week smartphone and digital payments course for residents aged 60+, at 6 library centres. Classes twice a week, 10:30 AM to 12 PM. Family members may accompany learners.', opp: { title: 'Digital literacy for seniors', dept: 'Digital Literacy Mission (illustrative)', deadline: 'Nov 12, 2026', elig: 'Residents aged 60 and above' }, loc: '6 library centres, Sample District', src: 'Official account', claim: 'none', r: 18, rp: 260, l: 540, b: 330 },
+      { id: 'p14', a: 'neha', t: '1d', dt: 'Oct 17, 2026 · 8:30 AM', type: 'discussion', text: 'Route 14B stops after 7:45 PM, which leaves nurses and shop staff finishing late without a bus. Would an 8:30 PM and a 9:15 PM trip be enough? Collecting replies to share with the depot before the next transport adalat.', loc: 'Puzhakkara', src: 'Citizen post', claim: 'none', r: 88, rp: 52, l: 402, b: 19 },
+      { id: 'p15', a: 'rahman', t: '1d', dt: 'Oct 17, 2026 · 7:45 AM', type: 'announcement', text: 'Enrolment for the fisherfolk group accident insurance scheme closes on Oct 31. Coverage of ₹10 lakh, with the premium paid by the department. Enrol at your Matsyabhavan office with your fisher ID card and bank passbook.', loc: 'Coastal wards', src: 'Official account', claim: 'none', r: 35, rp: 610, l: 1500, b: 380 },
+      { id: 'p16', a: 'vishnu', t: '1d', dt: 'Oct 17, 2026 · 7:00 AM', type: 'poll', text: 'When should our ward sabha meet so that more working people can attend?', poll: { opts: [['Sunday, 10 AM', 179], ['Saturday, 5 PM', 128], ['Weekday, 7 PM', 82]], ends: '5 days left' }, loc: 'Ward 7, Thekkumpuram', src: 'Citizen post', claim: 'none', r: 24, rp: 11, l: 96, b: 4 },
+      { id: 'p17', a: 'anon', t: '1d', dt: 'Oct 17, 2026', type: 'text', removed: true, text: 'This post broke the community guidelines on personal attacks. The author has been notified and can appeal the decision.', loc: '', src: '', claim: 'none', r: 0, rp: 0, l: 0, b: 0 },
+      { id: 'p18', a: 'thomas', t: '1d', dt: 'Oct 16, 2026 · 9:40 PM', type: 'text', text: 'Power went out in our lane during last night’s rain and the line crew had it restored within two hours, in the middle of a downpour. Small thing, but worth saying thank you publicly.', loc: 'Kadalthuram', src: 'Citizen post', claim: 'none', r: 12, rp: 20, l: 330, b: 3 },
+      { id: 'p19', a: 'village', t: '2d', dt: 'Oct 16, 2026 · 11:00 AM', type: 'announcement', text: 'Certificate camp at Puzhakkara Village Office on Oct 24, 10 AM – 4 PM. Income, residence and community certificates will be processed on the spot for applications already submitted online. Please bring a printout of your application number.', loc: 'Puzhakkara Village Office', src: 'Official notice (illustrative)', claim: 'none', r: 22, rp: 140, l: 310, b: 95 },
+      { id: 'p20', a: 'sreeja', t: '2d', dt: 'Oct 16, 2026 · 9:00 AM', type: 'event', text: 'Kerala Piravi celebration at the Ward 7 community hall on Nov 1 at 4 PM — cultural programmes by students, and the new Anganwadi building opens the same day.', ml: 'എല്ലാവർക്കും സ്വാഗതം!', loc: 'Ward 7 community hall', src: 'Official account', claim: 'none', r: 14, rp: 46, l: 260, b: 31 },
+      { id: 'p21', a: 'anjali', t: '2d', dt: 'Oct 16, 2026 · 7:20 AM', type: 'issue', text: 'Someone has been dumping waste bags behind the Govt LP School wall at night — the third time this month. Children walk past this every morning. Can the Panchayat set up a collection point here?', img: 'Waste bags behind the school wall', tone: 'slate', issue: 'NN-2035', loc: 'Ward 5, Vellimala', src: 'Citizen report', claim: 'unverified', r: 37, rp: 58, l: 296, b: 9 },
+      { id: 'p22', a: 'joseph', t: '2d', dt: 'Oct 16, 2026 · 6:00 AM', type: 'opportunity', text: 'Applications are open for the MP Youth Fellowship: six months with our constituency office on public grievances, data and field visits. A monthly stipend is provided.', opp: { title: 'MP Youth Fellowship · 6 months', dept: 'Office of the MP, Kadalthuram (illustrative)', deadline: 'Nov 20, 2026', elig: 'Graduates under 27 from Kadalthuram constituency' }, loc: 'Kadalthuram', src: 'Official account', claim: 'none', r: 70, rp: 480, l: 1300, b: 870 },
+      { id: 'p23', a: 'hari', t: '3d', dt: 'Oct 15, 2026 · 8:00 PM', type: 'discussion', text: 'Could the Panchayat library stay open till 8 PM during exam season (Feb–Mar)? Many students don’t have a quiet space at home. Happy to help organise volunteers if staffing is the problem.', loc: 'Thekkumpuram', src: 'Citizen post', claim: 'none', r: 39, rp: 27, l: 245, b: 11 },
+      { id: 'p24', a: 'collector', t: '3d', dt: 'Oct 15, 2026 · 11:30 AM', type: 'project', text: 'E-waste collection drive results: 4.2 tonnes collected from 62 collection points in two weeks, handed over to an authorised recycler. Thank you to the ward green volunteers and every household that took part.', project: { name: 'District e-waste collection drive', pct: 100, meta: '62 collection points · completed Oct 14, 2026' }, loc: 'Sample District', src: 'Official account', claim: 'verified', claimBy: 'weighbridge records reviewed by District Fact Desk (illustrative)', r: 19, rp: 160, l: 980, b: 40 },
+      { id: 'p25', a: 'forum', t: '3d', dt: 'Oct 15, 2026 · 9:00 AM', type: 'event', text: 'Public hearing on the proposed construction near Vellimala wetland — Oct 29, 5 PM at the Town Hall. Residents can register to speak. Bring your questions about the environmental clearance and the drainage plan.', loc: 'Town Hall, Puzhakkara', src: 'Community group (identity not verified)', claim: 'none', r: 57, rp: 140, l: 420, b: 66 },
+      { id: 'p26', a: 'meera', t: '4d', dt: 'Oct 14, 2026 · 5:00 PM', type: 'text', text: 'Replying to concerns about medicine stock at Thekkumpuram PHC: a fresh supply of 32 essential medicines reached the centre on Oct 13. If a prescribed medicine is unavailable, please report it here with the date and PHC name.', loc: 'Thekkumpuram PHC', src: 'Official account', claim: 'review', r: 130, rp: 95, l: 870, b: 22 },
+      { id: 'p27', a: 'priya', t: '4d', dt: 'Oct 14, 2026 · 10:00 AM', type: 'photo', text: 'The new covered bus shelter at Church Road junction is finally up — seating, a ramp and a lit route board. We first raised this at the ward sabha back in March.', img: 'New bus shelter, Church Road junction', tone: 'blue', loc: 'Ward 9, Puzhakkara', src: 'Citizen post', claim: 'none', r: 21, rp: 44, l: 520, b: 8 },
+      { id: 'p28', a: 'sreeja', t: '5d', dt: 'Oct 13, 2026 · 8:00 AM', type: 'opportunity', text: 'MGNREGS job card registration and work demand camp at the Ward 7 hall on Oct 23, 9 AM – 1 PM. Bring Aadhaar, ration card and a passport-size photo. Women and SC/ST households are especially encouraged to register.', opp: { title: 'MGNREGS registration camp', dept: 'Thekkumpuram Grama Panchayat (illustrative)', deadline: 'Oct 23, 2026', elig: 'Adult members of rural households' }, loc: 'Ward 7 community hall', src: 'Official account', claim: 'none', r: 16, rp: 88, l: 210, b: 57 }
+    ];
+
+    const IMG = {
+      road: './assets/5054e685ca8e52a4d41a6f7049dfaaee.svg', streetlights: './assets/632d6dd6ca71eca0b290b95a592cdf39.svg', lake: './assets/180d48ec8a7a05e2232a79660598914e.svg',
+      anganwadi: './assets/9f680c6449f625d1dd9ed934ae87e452.svg', waste: './assets/20dc5d9891e881ab20b6a1d4a81a50df.svg', shelter: './assets/ca229a3b6a5bed05ea4cb2834d302dbd.svg',
+      healthcamp: './assets/a30eb64c4bb7f4d71a630a966bdd9d94.svg', harbour: './assets/917dd6e117db2caae5f455d5689f30fd.svg', bridge: './assets/e3e95aff8121240cb308cc7ee10031e0.svg',
+      drill: './assets/a725d6388edab81969932964e749249c.svg', ewaste: './assets/d27b945aaaf7be507ec3de79fd28e772.svg', classroom: './assets/de70d267c0db8bb16d67ccf5f9011de1.svg'
+    };
+    const PIC = { p1: 'road', p2: 'streetlights', p3: 'drill', p4: 'healthcamp', p8: 'harbour', p9: 'lake', p10: 'bridge', p12: 'anganwadi', p13: 'classroom', p21: 'waste', p24: 'ewaste', p27: 'shelter' };
+    const CAP = { p3: 'Rescue teams rehearse evacuation at Kadalthuram beach', p4: 'Screening desk at a PHC health camp', p8: 'Dredger and fishing boats at Kadalthuram harbour', p10: 'Thodu bridge with heavy-vehicle diversion', p13: 'Digital literacy class at a library centre', p24: 'E-waste collection point, ward 4' };
+    const ISSPIC = { 'NN-2041': 'streetlights', 'NN-2035': 'waste', 'NN-2029': 'road', 'NN-2027': 'shelter', 'NN-2022': 'waste', 'NN-2014': 'road' };
+    const PPIC = { pr1: 'road', pr2: 'harbour', pr3: 'anganwadi', pr4: 'lake', pr5: 'streetlights', pr6: 'healthcamp' };
+    const KICK = {
+      announcement: ['Public announcement', '#1D4ED8', I.mega],
+      project: ['Project update', '#1D4ED8', I.bars],
+      issue: ['Civic complaint', '#B45309', I.flag],
+      discussion: ['Community discussion', '#6D28D9', I.msg],
+      poll: ['Poll', '#6D28D9', I.poll],
+      opportunity: ['Government opportunity', '#15803D', I.brief],
+      event: ['Event', '#1D4ED8', I.cal]
+    };
+    const TONE = {
+      blue: 'color: #2563EB; background: #F8FAFF',
+      slate: 'color: #475569; background: #F8FAFC',
+      violet: 'color: #7C3AED; background: #FBFAFF',
+      green: 'color: #16A34A; background: #F7FEF9'
+    };
+    const CLAIM = {
+      verified: ['background: #F0FDF4; border-color: #BBF7D0; color: #15803D', I.shieldOk, 'Claim independently verified'],
+      unverified: ['background: #F8FAFC; border-color: #E2E8F0; color: #475569', I.info, 'Claim not independently verified'],
+      review: ['background: #FFFBEB; border-color: #FDE68A; color: #92400E', I.clock, 'Fact check in progress · stock figure being checked by District Fact Desk (illustrative)'],
+      correction: ['background: #FFFBEB; border-color: #FDE68A; color: #92400E', I.pencil, 'Correction issued by the account holder']
+    };
+
+    const toggle = (key, id) => () => { const o = Object.assign({}, s[key]); if (o[id]) delete o[id]; else o[id] = 1; set({ [key]: o, menuFor: null }); };
+
+    const isFeed = s.screen === 'feed';
+    const isRep = s.screen === 'rep';
+    let all = s.newPosts.concat(POSTS).filter((p) => !s.muted[p.a]);
+    if (isRep) all = all.filter((p) => p.a === s.rep);
+    if (isFeed && s.feedTab === 'following') all = all.filter((p) => s.followed[p.a] || p.a === 'me');
+    if (isFeed && s.typeFilter !== 'all') all = all.filter((p) => s.typeFilter === 'photo' ? !!PIC[p.id] : p.type === s.typeFilter);
+    const totalCount = all.length;
+    const shown = all.slice(0, s.visible);
+
+    const posts = shown.map((p) => {
+      const au = author(p.a);
+      const liked = !!s.liked[p.id], rp = !!s.reposted[p.id], bm = !!s.bookmarked[p.id];
+      const k = KICK[p.type];
+      const c = CLAIM[p.claim];
+      let pollOpts = [], pollOpen = false, pollDone = false, pollMeta = '';
+      if (p.poll) {
+        const mine = s.votes[p.id];
+        const voted = mine !== undefined;
+        const counts = p.poll.opts.map((o, i) => o[1] + (mine === i ? 1 : 0));
+        const total = counts.reduce((x, y) => x + y, 0);
+        pollOpen = !voted; pollDone = voted;
+        pollOpts = p.poll.opts.map((o, i) => ({
+          label: o[0], pct: Math.round(counts[i] * 100 / total),
+          fill: mine === i ? '#BFDBFE' : '#E2E8F0', fw: mine === i ? 700 : 500, mine: mine === i ? '  ✓ your vote' : '',
+          vote: () => { set({ votes: Object.assign({}, s.votes, { [p.id]: i }) }); this.flash('Vote recorded. Polls are advisory, not a binding decision.'); }
+        }));
+        pollMeta = total.toLocaleString('en-IN') + ' votes · ' + p.poll.ends + ' · Advisory poll, one vote per verified resident';
+      }
+      const iss = p.issue ? ISS[p.issue] : null;
+      return {
+        id: p.id, t: p.t, dt: p.dt, text: p.text, ml: p.ml || '', hasMl: !!p.ml,
+        removed: !!p.removed, live: !p.removed, au: au,
+        hasKicker: !!k, kLabel: k ? k[0] : '', kStyle: k ? 'color: ' + k[1] : '', kIcon: k ? k[2] : '',
+        hasImg: !!PIC[p.id], img: p.img || CAP[p.id] || '', imgSrc: PIC[p.id] ? IMG[PIC[p.id]] : '',
+        hasPoll: !!p.poll, pollOpts: pollOpts, pollOpen: pollOpen, pollDone: pollDone, pollMeta: pollMeta,
+        hasProject: !!p.project, project: p.project ? Object.assign({}, p.project, { fill: p.project.pct === 100 ? '#16A34A' : '#2563EB' }) : {},
+        hasOpp: !!p.opp, opp: p.opp || {},
+        hasIssue: !!iss, issue: iss ? { id: p.issue, title: iss.title, status: iss.status, st: ST[iss.status] } : {},
+        hasCorrection: !!p.correction, correction: p.correction || '',
+        loc: p.loc, src: p.src,
+        hasClaim: !!c, claimStyle: c ? c[0] : '', claimIcon: c ? c[1] : '', claimText: c ? (c[2] + (p.claimBy ? ' · ' + p.claimBy : '')) : '',
+        rTxt: fmt(p.r), rpTxt: fmt(p.rp + (rp ? 1 : 0)), lTxt: fmt(p.l + (liked ? 1 : 0)), bTxt: fmt(p.b + (bm ? 1 : 0)),
+        liked: liked, reposted: rp, bookmarked: bm,
+        likeCls: liked ? 'act like-on' : 'act', rpCls: rp ? 'act rp-on' : 'act', bmCls: bm ? 'act bm-on' : 'act',
+        likeFill: liked ? 'currentColor' : 'none', bmFill: bm ? 'currentColor' : 'none',
+        bmMenu: bm ? 'Remove bookmark' : 'Bookmark',
+        menuOpen: s.menuFor === p.id,
+        onLike: toggle('liked', p.id),
+        onRepost: () => { toggle('reposted', p.id)(); this.flash(rp ? 'Repost removed' : 'Reposted to your followers'); },
+        onBookmark: () => { toggle('bookmarked', p.id)(); this.flash(bm ? 'Removed from bookmarks' : 'Saved to bookmarks'); },
+        onShare: () => this.flash('Link to post copied'),
+        onReply: () => set({ composeOpen: true, replyTo: au.name, composeType: 'text', menuFor: null }),
+        onMore: () => set({ menuFor: s.menuFor === p.id ? null : p.id }),
+        onWhy: () => this.flash(s.followed[p.a] ? 'You follow ' + au.name + '.' : 'Shown because it is near your ward. Feed order is by time, not by party.'),
+        onMute: () => { set({ muted: Object.assign({}, s.muted, { [p.a]: 1 }), menuFor: null }); this.flash(au.name + ' muted. Unmute anytime in settings.'); },
+        onReport: () => set({ reportFor: p.id, reportReason: 0, menuFor: null }),
+        onAuthor: go('rep', { rep: p.a, visible: 50 }),
+        onIssue: go('issue', { issue: p.issue }),
+        onApply: () => this.flash('Opens the issuing department’s official portal (illustrative).'),
+        onLog: () => this.flash('Moderation log: removed Oct 17 · reason: personal attack · reviewer team B · appeal open'),
+        onGuide: () => this.flash('Community guidelines: be specific, be civil, no personal information.')
+      };
+    });
+
+    const NAV = [
+      ['feed', 'Home', I.home], ['issues', 'Local issues', I.flag, '8'], ['reps', 'Representatives', I.users],
+      ['projects', 'Projects', I.bars], ['opportunities', 'Opportunities', I.brief], ['discussions', 'Discussions', I.msg],
+      ['notifications', 'Notifications', I.bell, s.notifRead ? '' : '3']
+    ];
+    const WORK = [['portal', 'Representative portal', I.portal], ['admin', 'Admin dashboard', I.admin]];
+    const activeOf = { issue: 'issues', rep: 'reps' };
+    const cur = activeOf[s.screen] || s.screen;
+    const navMap = (n) => ({
+      label: n[1], icon: n[2], badge: n[3] || '', hasBadge: !!n[3],
+      cls: cur === n[0] ? 'navitem on' : 'navitem', pillCls: cur === n[0] ? 'pill on' : 'pill',
+      go: go(n[0], n[0] === 'feed' ? { visible: this.props.postsPerPage || 10 } : null)
+    });
+
+    const chips = (list, key) => list.map((c) => {
+      const val = Array.isArray(c) ? c[0] : c, label = Array.isArray(c) ? c[1] : c;
+      return { label: label, on: s[key] === val, cls: s[key] === val ? 'pill on' : 'pill', pick: () => set({ [key]: val, visible: this.props.postsPerPage || 10 }) };
+    });
+
+    const TITLES = {
+      feed: ['Home', 'Civic updates from representatives, officials and neighbours'],
+      issues: ['Local issues', 'Reported by residents, tracked until resolved'],
+      issue: ['Issue details', 'Status, official responses and discussion'],
+      reps: ['Representatives', 'MLAs, MPs, ministers, Panchayat members and official accounts'],
+      rep: [A[s.rep] ? A[s.rep].name : 'Profile', 'Representative profile'],
+      projects: ['Development projects', 'Progress, budgets and sources'],
+      opportunities: ['Government opportunities', 'Jobs, schemes, training and tenders near you'],
+      discussions: ['Community discussions', 'Open conversations about your area'],
+      notifications: ['Notifications', 'Replies, issue updates and corrections'],
+      portal: ['Representative portal', 'Publish updates and respond to constituents'],
+      admin: ['Admin dashboard', 'Moderation, verification and neutrality']
+    };
+
+    // rep profile
+    const repA = author(s.rep);
+    const rep = Object.assign({}, repA, {
+      followCls: s.followed[s.rep] ? 'btn btn-secondary btn-sm' : 'btn btn-primary btn-sm',
+      followTxt: s.followed[s.rep] ? 'Following' : 'Follow',
+      onFollow: toggle('followed', s.rep),
+      onAsk: () => set({ composeOpen: true, replyTo: repA.name, composeType: 'discussion' })
+    });
+
+    const repCard = (k) => {
+      const a = author(k);
+      return Object.assign({}, a, {
+        affLine: a.aff ? 'Affiliation: ' + a.aff + ' (fictional party)' : 'Non-partisan government account',
+        followCls: s.followed[k] ? 'btn btn-secondary btn-sm' : 'btn btn-primary btn-sm',
+        followTxt: s.followed[k] ? 'Following' : 'Follow',
+        onFollow: toggle('followed', k), open: go('rep', { rep: k, visible: 50 })
+      });
+    };
+    const REPKEYS = ['anitha', 'joseph', 'meera', 'rahman', 'sreeja', 'suresh', 'collector', 'pwd', 'village', 'employ', 'dlm'];
+    const q = (s.repQuery || '').toLowerCase();
+    const repList = REPKEYS.filter((k) => {
+      const a = A[k];
+      const catOk = s.repFilter === 'All' || a.cat === s.repFilter;
+      const qOk = !q || (a.name + ' ' + a.role).toLowerCase().indexOf(q) >= 0;
+      return catOk && qOk;
+    }).map(repCard);
+    const railReps = ['anitha', 'joseph', 'meera', 'sreeja', 'suresh'].map((k) => {
+      const c = repCard(k);
+      c.followCls = s.followed[k] ? 'btn btn-secondary btn-sm' : 'btn btn-primary btn-sm';
+      return c;
+    });
+
+    // issues
+    const issueKeys = Object.keys(ISS);
+    const issues = issueKeys.filter((k) => s.issueFilter === 'All' || ISS[k].status === s.issueFilter).map((k) => Object.assign({ id: k }, ISS[k], { st: ST[ISS[k].status], supports: ISS[k].supports + (s.supported[k] ? 1 : 0), open: go('issue', { issue: k }) }));
+    const ii = ISS[s.issue];
+    const order = ['Open', 'Acknowledged', 'In progress', 'Resolved'];
+    const at = order.indexOf(ii.status);
+    const stepLabels = ['Reported', 'Acknowledged', 'In progress', 'Resolved'];
+    const updates = [{ who: ii.by, verified: false, when: ii.age, text: 'Issue reported with photo and ward-level location.', src: 'Citizen report', dot: '#94A3B8' }];
+    if (at >= 1) updates.push({ who: ii.assigned, verified: true, when: 'next day', text: 'Acknowledged. Site visit scheduled and the issue assigned to the field team.', src: 'Official account', dot: '#2563EB' });
+    if (at >= 2) updates.push({ who: s.issue === 'NN-2041' ? 'Sreeja P' : ii.assigned, verified: true, when: '2 days ago', text: s.issue === 'NN-2041' ? 'Replacement LED fittings have been sanctioned; crew is working pole by pole. 6 of 14 restored so far.' : 'Work has started. Next update expected within the target response time.', src: 'Official account · claim not independently verified', dot: '#2563EB' });
+    if (at >= 3) updates.push({ who: ii.assigned, verified: true, when: '1 week ago', text: 'Marked resolved. Reporter confirmed the fix; reopen within 14 days if the problem returns.', src: 'Official account · confirmed by reporter', dot: '#16A34A' });
+    const iss = Object.assign({ id: s.issue }, ii, {
+      hasImg: !!ISSPIC[s.issue], imgSrc: ISSPIC[s.issue] ? IMG[ISSPIC[s.issue]] : '',
+      st: ST[ii.status], sla: at >= 3 ? 'Met' : '7 days from report',
+      supports: ii.supports + (s.supported[s.issue] ? 1 : 0),
+      supCls: s.supported[s.issue] ? 'btn btn-secondary' : 'btn btn-primary',
+      supTxt: s.supported[s.issue] ? 'Supported' : 'Support this issue',
+      onSupport: toggle('supported', s.issue),
+      folTxt: s.followedIssues[s.issue] ? 'Following updates' : 'Follow updates',
+      onFollow: toggle('followedIssues', s.issue),
+      steps: stepLabels.map((l, i) => ({ label: l, bar: i <= at ? (at === 3 ? '#16A34A' : '#2563EB') : '#E2E8F0', fw: i === at ? 700 : 500, color: i <= at ? '#1E293B' : '#94A3B8' })),
+      updates: updates
+    });
+    const issueComments = [
+      { who: 'Vishnu Das', when: '1d', text: 'Same problem near the library junction — two poles there are also off.' },
+      { who: 'Neha Joseph', when: '1d', text: 'Thanks for the update. Could the remaining poles near the bus stand be prioritised? That’s where most people wait.' },
+      { who: 'Hari Prasad', when: '20h', text: 'Three lights came back on tonight on our side. Will confirm the rest tomorrow.' }
+    ];
+
+    // projects
+    const PROJ = [
+      ['pr1', 'Puzhakkara–Kadavu road resurfacing', 'PWD Roads Division', 'Puzhakkara', '₹6.8 crore', 78, 'On track', 'Nov 15, 2026', 'Oct 16', 'PWD progress report (illustrative)', 'verified'],
+      ['pr2', 'Kadalthuram fishing harbour dredging', 'Harbour Engineering Dept', 'Kadalthuram', '₹24 crore', 35, 'Delayed', 'Mar 2027', 'Oct 17', 'Parliament written reply (illustrative)', 'unverified'],
+      ['pr3', 'Ward 7 Anganwadi building', 'Thekkumpuram Grama Panchayat', 'Ward 7', '₹38 lakh', 100, 'Completed', 'Nov 1, 2026', 'Oct 15', 'Block engineer certificate (illustrative)', 'verified'],
+      ['pr4', 'Vellimala lake rejuvenation', 'Irrigation Department', 'Vellimala', '₹2.1 crore', 52, 'On track', 'Apr 2027', 'Oct 10', 'Department dashboard (illustrative)', 'unverified'],
+      ['pr5', 'Streetlight LED retrofit · 1,200 poles', 'Thekkumpuram Grama Panchayat', 'Thekkumpuram', '₹1.4 crore', 61, 'On track', 'Jan 2027', 'Oct 12', 'Panchayat committee minutes (illustrative)', 'verified'],
+      ['pr6', 'Thekkumpuram PHC upgrade', 'Health Department', 'Thekkumpuram', '₹3.2 crore', 22, 'Delayed', 'Jun 2027', 'Oct 3', 'Department press note (illustrative)', 'unverified']
+    ];
+    const PST = { 'On track': 'background: #F0FDF4; color: #15803D', 'Delayed': 'background: #FFFBEB; color: #B45309', 'Completed': 'background: #EFF6FF; color: #1D4ED8' };
+    const projects = PROJ.filter((j) => s.projFilter === 'All' || j[6] === s.projFilter).map((j) => ({
+      name: j[1], dept: j[2], loc: j[3], budget: j[4], pct: j[5], status: j[6], target: j[7], updated: j[8], src: j[9],
+      claim: j[10] === 'verified' ? 'Figures independently verified' : 'Figures not independently verified',
+      claimInk: j[10] === 'verified' ? 'color: #15803D; font-weight: 600' : 'color: #64748B',
+      imgSrc: IMG[PPIC[j[0]]], st: PST[j[6]], fill: j[6] === 'Completed' ? '#16A34A' : (j[6] === 'Delayed' ? '#D97706' : '#2563EB'),
+      folCls: s.followedProjects[j[0]] ? 'btn btn-secondary btn-sm' : 'btn btn-primary btn-sm',
+      folTxt: s.followedProjects[j[0]] ? 'Following' : 'Follow updates',
+      onFollow: toggle('followedProjects', j[0])
+    }));
+
+    // opportunities
+    const OPP = [
+      ['o1', 'Anganwadi Helper · 40 posts', 'Women & Child Development', 'Job', 'Puzhakkara & Thekkumpuram', 'Women aged 18–46, SSLC pass, resident of the district', 18, 'Nov 5'],
+      ['o2', 'Digital literacy for seniors', 'Digital Literacy Mission', 'Training', '6 library centres', 'Residents aged 60 and above', 25, 'Nov 12'],
+      ['o3', 'Fisherfolk group accident insurance', 'Fisheries Department', 'Scheme', 'Coastal wards', 'Registered fisherfolk with a fisher ID card', 13, 'Oct 31'],
+      ['o4', 'MP Youth Fellowship · 6 months', 'Office of the MP, Kadalthuram', 'Fellowship', 'Kadalthuram', 'Graduates under 27 from Kadalthuram constituency', 33, 'Nov 20'],
+      ['o5', 'MGNREGS job card registration', 'Thekkumpuram Grama Panchayat', 'Scheme', 'Ward 7 hall', 'Adult members of rural households', 5, 'Oct 23'],
+      ['o6', 'Supply of LED street-light fittings', 'Thekkumpuram Grama Panchayat', 'Tender', 'Thekkumpuram', 'Registered suppliers with valid GST and BIS certification', 10, 'Oct 28'],
+      ['o7', 'Disaster response volunteers', 'District Collectorate', 'Volunteering', 'Sample District', 'Residents aged 18–50; first-aid training provided', 15, 'Nov 2']
+    ];
+    const OPPF = { Jobs: 'Job', Schemes: 'Scheme', Training: 'Training', Tenders: 'Tender', Fellowships: 'Fellowship', Volunteering: 'Volunteering' };
+    const oppMap = (o) => ({
+      title: o[1], dept: o[2], type: o[3], loc: o[4], elig: o[5],
+      dl: (o[6] <= 7 ? 'Closes in ' + o[6] + ' days · ' : 'Deadline ') + o[7],
+      dlStyle: o[6] <= 7 ? 'background: #FEF2F2; color: #B91C1C' : 'background: #F1F5F9; color: #334155',
+      dlInk: o[6] <= 7 ? 'color: #B91C1C; font-weight: 600' : '',
+      saveCls: s.savedOpps[o[0]] ? 'btn btn-violet btn-sm' : 'btn btn-secondary btn-sm',
+      saveTxt: s.savedOpps[o[0]] ? 'Saved' : 'Save',
+      onSave: toggle('savedOpps', o[0]),
+      onApply: () => this.flash('Opens the ' + o[2] + ' official portal (illustrative).')
+    });
+    const opps = OPP.filter((o) => s.oppFilter === 'All' || o[3] === OPPF[s.oppFilter]).map(oppMap);
+    const railOpps = [OPP[4], OPP[0], OPP[2]].map(oppMap);
+
+    // discussions
+    const DISC = [
+      ['Environment', 'Should Puzhakkara market go fully plastic-bag free from January?', 'Vendors worry about the cost of cloth bags; the canal behind the market floods every monsoon.', 'Lakshmi Nair', 142, '12 min ago', 'Puzhakkara', 'Representative replied'],
+      ['Transport', 'Route 14B: add 8:30 PM and 9:15 PM trips?', 'Nurses and shop staff finishing late are left without a bus after 7:45 PM.', 'Neha Joseph', 88, '1h ago', 'Puzhakkara', ''],
+      ['Governance', 'Ward sabha timing: weekday evening or Sunday morning?', 'Trying to get more working residents and students to attend.', 'Vishnu Das', 64, '3h ago', 'Ward 7', 'Representative replied'],
+      ['Education', 'Library hours during exam season', 'Proposal to keep the Panchayat library open till 8 PM in Feb–Mar, with volunteers.', 'Hari Prasad', 39, '5h ago', 'Thekkumpuram', ''],
+      ['Environment', 'Questions for the Vellimala wetland public hearing', 'Collecting questions on environmental clearance and drainage before Oct 29.', 'Puzhakkara Residents’ Forum', 57, '1d ago', 'Vellimala', ''],
+      ['Safety', 'Safe crossing near Govt LP School', 'Parents ask for a zebra crossing and a warden during school hours.', 'Anjali R', 71, '1d ago', 'Ward 5, Vellimala', 'Official replied']
+    ];
+    const discussions = DISC.filter((d) => s.discFilter === 'All' || d[0] === s.discFilter).map((d) => ({
+      tag: d[0], title: d[1], excerpt: d[2], by: d[3], replies: d[4], last: d[5], where: d[6], responded: !!d[7], respLabel: d[7],
+      open: () => this.flash('Opening thread: ' + d[1])
+    }));
+
+    // notifications
+    const NOTIF = [
+      [I.flag, 'background: #FFFBEB; color: #B45309', 'Your supported issue NN-2041 moved to In progress', '35 min ago', 'issue'],
+      [I.msg, 'background: #EFF6FF; color: #1D4ED8', 'Sreeja P replied to your comment on the Ward 7 development fund poll', '2h ago', 'feed'],
+      [I.pencil, 'background: #FFFBEB; color: #B45309', 'Correction issued on a post you reposted: Joseph Thomas updated the harbour dredging amount', '5h ago', 'feed'],
+      [I.brief, 'background: #F0FDF4; color: #15803D', 'New opportunity near you: Digital literacy for seniors', '1d ago', 'opportunities'],
+      [I.shieldOk, 'background: #F1F5F9; color: #334155', 'Moderators reviewed your report. The post was removed and the author can appeal.', '1d ago', 'feed'],
+      [I.cal, 'background: #EFF6FF; color: #1D4ED8', 'Reminder: Ward sabha at Ward 7 community hall on Oct 22, 10 AM', '2d ago', 'feed']
+    ];
+    const notifs = NOTIF.map((n, i) => ({
+      icon: n[0], iconStyle: n[1], text: n[2], when: n[3], unread: !s.notifRead && i < 3,
+      bg: !s.notifRead && i < 3 ? 'background: #F8FAFF' : '',
+      open: n[4] === 'issue' ? go('issue', { issue: 'NN-2041', notifRead: true }) : go(n[4], { notifRead: true })
+    }));
+
+    // portal inbox
+    const inbox = ['NN-2038', 'NN-2041', 'NN-2022', 'NN-2014'].map((k, i) => ({
+      id: k, title: ISS[k].title, ward: ISS[k].ward, status: ISS[k].status, st: ST[ISS[k].status],
+      days: ['8 days', '9 days', '4 days', '5 days'][i], ageInk: i < 2 ? '#B45309' : '#475569', open: go('issue', { issue: k })
+    }));
+
+    // admin
+    const QUEUE = [
+      ['q1', 'Reply calling an MLA a “thief” with no evidence', '@user_4471', '2h ago', 'Personal attack', 12],
+      ['q2', 'Repost of harbour fund post with the old ₹42 crore figure', '@coastnews_fan', '4h ago', 'Misinformation', 8],
+      ['q3', 'Account “Collector Sample Official”', '@collector_official1', '6h ago', 'Impersonation', 21],
+      ['q4', 'Comment sharing a resident’s phone number', '@user_9022', '9h ago', 'Personal information', 3],
+      ['q5', 'Repeated promotional links under issue NN-2029', '@quickloans_kl', '13h ago', 'Spam', 6]
+    ];
+    const QST = { pending: ['Pending', 'background: #FFFBEB; color: #B45309'], kept: ['Kept', 'background: #F1F5F9; color: #334155'], removed: ['Removed', 'background: #FEF2F2; color: #B91C1C'], noted: ['Note added', 'background: #F5F3FF; color: #6D28D9'] };
+    const act = (id, v, msg) => () => { set({ queueActions: Object.assign({}, s.queueActions, { [id]: v }) }); this.flash(msg); };
+    const queue = QUEUE.map((r) => {
+      const v = s.queueActions[r[0]] || 'pending';
+      return { what: r[1], who: r[2], when: r[3], reason: r[4], reports: r[5], status: QST[v][0], st: QST[v][1],
+        keep: act(r[0], 'kept', 'Kept · decision logged'), remove: act(r[0], 'removed', 'Removed · author notified, appeal available'), correct: act(r[0], 'noted', 'Context note attached to the post') };
+    });
+    const pendingCount = 34 - Object.keys(s.queueActions).length;
+    const VER = [['v1', 'Biju Mathew', 'Claims: Panchayat Member, Ward 4', 'Result notice + ID submitted'], ['v2', 'Office of the Minister for Fisheries', 'Claims: Government account', 'Official email domain confirmed'], ['v3', 'Coastline Updates', 'Claims: News organisation', 'Registration document missing']];
+    const verifs = VER.map((v) => {
+      const r = s.verifActions[v[0]];
+      return { name: v[1], claim: v[2], docs: v[3], pending: !r, done: !!r,
+        result: r === 'ok' ? 'Approved' : 'More info requested', st: r === 'ok' ? 'background: #F0FDF4; color: #15803D' : 'background: #F1F5F9; color: #334155',
+        approve: () => { set({ verifActions: Object.assign({}, s.verifActions, { [v[0]]: 'ok' }) }); this.flash(v[1] + ' verified. Badge applied.'); },
+        reject: () => { set({ verifActions: Object.assign({}, s.verifActions, { [v[0]]: 'info' }) }); this.flash('Request for more information sent.'); } };
+    });
+    const NEU = [['Harbour Front', 138], ['People’s Coast Alliance', 126], ['Green Valley Party', 81], ['Independents', 67]];
+    const neutral = NEU.map((n) => ({ label: n[0] + ' (fictional)', count: n[1], pct: Math.round(n[1] * 100 / 138) }));
+
+    const events = [
+      { mon: 'Oct', day: '22', title: 'Ward sabha', time: '10 AM', place: 'Ward 7 community hall' },
+      { mon: 'Oct', day: '25', title: 'Flood preparedness drill', time: '7 AM', place: 'Kadalthuram beach' },
+      { mon: 'Oct', day: '26', title: 'Free health camps', time: '9 AM', place: '14 PHCs' },
+      { mon: 'Nov', day: '1', title: 'Kerala Piravi celebration', time: '4 PM', place: 'Ward 7 community hall' }
+    ];
+
+    const REASONS = ['False or misleading information', 'Personal attack or harassment', 'Shares someone’s personal information', 'Impersonation', 'Spam or scam'];
+    const reportReasons = REASONS.map((r, i) => ({ label: r, on: s.reportReason === i, pick: () => set({ reportReason: i }) }));
+
+    const per = this.props.postsPerPage || 10;
+    const screenT = TITLES[s.screen] || TITLES.feed;
+    return {
+      showNotice: this.props.showNotice !== false,
+      navMain: NAV.map(navMap), navWork: WORK.map(navMap), navAll: NAV.concat(WORK).map(navMap),
+      shellCls: (s.screen === 'admin' || s.screen === 'portal') ? 'shell wide' : 'shell',
+      screenTitle: screenT[0], screenSub: screenT[1],
+      hasBack: s.screen === 'issue' || s.screen === 'rep',
+      goBack: go(s.screen === 'issue' ? 'issues' : (s.prev && s.prev !== 'rep' ? s.prev : 'reps')),
+      isFeed: isFeed, isRep: isRep, showPosts: isFeed || isRep,
+      isIssues: s.screen === 'issues', isIssue: s.screen === 'issue', isReps: s.screen === 'reps',
+      isProjects: s.screen === 'projects', isOpps: s.screen === 'opportunities', isDisc: s.screen === 'discussions',
+      isNotif: s.screen === 'notifications', isPortal: s.screen === 'portal', isAdmin: s.screen === 'admin',
+      goNotif: go('notifications'), goOpps: go('opportunities'), goReps: go('reps'), goProjects: go('projects'), goIssues: go('issues'),
+      goRepSelf: go('rep', { rep: 'anitha', visible: 50 }),
+      tabAllCls: s.feedTab === 'all' ? 'tab on' : 'tab', tabFolCls: s.feedTab === 'following' ? 'tab on' : 'tab',
+      tabAllOn: s.feedTab === 'all', tabFolOn: s.feedTab === 'following',
+      tabAll: () => set({ feedTab: 'all', visible: per }), tabFol: () => set({ feedTab: 'following', visible: per }),
+      typeChips: chips([['all', 'All'], ['announcement', 'Announcements'], ['project', 'Projects'], ['issue', 'Complaints'], ['discussion', 'Discussions'], ['poll', 'Polls'], ['opportunity', 'Opportunities'], ['event', 'Events'], ['photo', 'Photos']], 'typeFilter'),
+      clearFilter: () => set({ typeFilter: 'all', feedTab: 'all', visible: per }),
+      posts: posts, noPosts: posts.length === 0,
+      shownCount: shown.length, totalCount: totalCount, hasMore: shown.length < totalCount, allShown: totalCount > 0 && shown.length >= totalCount,
+      moreCount: Math.min(8, totalCount - shown.length),
+      loadMore: () => set({ visible: s.visible + 8 }),
+      rep: rep,
+      issueChips: chips(['All', 'Open', 'Acknowledged', 'In progress', 'Resolved'], 'issueFilter'), issues: issues, iss: iss, issueComments: issueComments,
+      commentPosted: () => this.flash('Comment posted · visible after automated personal-info check'),
+      shareGeneric: () => this.flash('Link copied'),
+      repChips: chips([['All', 'All'], ['MLA', 'MLAs'], ['MP', 'MPs'], ['Minister', 'Ministers'], ['Panchayat', 'Panchayat'], ['Official', 'Officials']], 'repFilter'),
+      repList: repList, repQuery: s.repQuery, onRepQuery: (e) => set({ repQuery: e.target.value }), railReps: railReps,
+      projChips: chips(['All', 'On track', 'Delayed', 'Completed'], 'projFilter'), projects: projects,
+      oppChips: chips(['All', 'Jobs', 'Schemes', 'Training', 'Tenders', 'Fellowships', 'Volunteering'], 'oppFilter'), opps: opps, railOpps: railOpps,
+      discChips: chips(['All', 'Environment', 'Transport', 'Governance', 'Education', 'Safety'], 'discFilter'), discussions: discussions,
+      openDiscussion: () => set({ composeOpen: true, composeType: 'discussion', replyTo: null }),
+      notifs: notifs, markRead: () => set({ notifRead: true }),
+      inbox: inbox, portalPublish: () => this.flash('Published with “Official account” label · verification requested'), portalSchedule: () => this.flash('Scheduled for tomorrow, 9:00 AM'),
+      queue: queue, pendingCount: pendingCount, verifs: verifs, neutral: neutral,
+      events: events,
+      composeOpen: !!s.composeOpen,
+      composeHeading: s.replyTo ? 'Reply to ' + s.replyTo : 'Create post',
+      composeText: s.composeText, composeType: s.composeType, composeLoc: s.composeLoc, composeCount: (s.composeText || '').length,
+      onComposeText: (e) => set({ composeText: e.target.value.slice(0, 500) }),
+      onComposeType: (e) => set({ composeType: e.target.value }),
+      onComposeLoc: (e) => set({ composeLoc: e.target.value }),
+      openCompose: () => set({ composeOpen: true, replyTo: null, composeType: 'text' }),
+      openPoll: () => set({ composeOpen: true, replyTo: null, composeType: 'poll' }),
+      openIssue: () => set({ composeOpen: true, replyTo: null, composeType: 'issue' }),
+      closeCompose: () => set({ composeOpen: false, replyTo: null }),
+      publishPost: () => {
+        const text = (s.composeText || '').trim();
+        if (!text) { this.flash('Write something before posting'); return; }
+        const np = { id: 'n' + Date.now(), a: 'me', t: 'now', dt: 'Just now', type: s.composeType === 'poll' ? 'discussion' : s.composeType, text: (s.replyTo ? 'Replying to ' + s.replyTo + ' — ' : '') + text, loc: s.composeLoc || 'Ward 7, Thekkumpuram', src: 'Citizen post', claim: s.composeType === 'issue' ? 'unverified' : 'none', r: 0, rp: 0, l: 0, b: 0 };
+        set({ newPosts: [np].concat(s.newPosts), composeOpen: false, composeText: '', replyTo: null, screen: 'feed', feedTab: 'all', typeFilter: 'all' });
+        top();
+        this.flash('Posted to your ward timeline');
+      },
+      reportOpen: !!s.reportFor, reportReasons: reportReasons,
+      closeReport: () => set({ reportFor: null }),
+      submitReport: () => { set({ reportFor: null }); this.flash('Report submitted. Moderators review within 24 hours.'); },
+      hasToast: !!s.toast, toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

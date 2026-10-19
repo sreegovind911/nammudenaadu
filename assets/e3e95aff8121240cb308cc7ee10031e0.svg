@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+<rect width="1200" height="675" fill="#DCEAFB"></rect>
+<path d="M0 280 C200 240 400 270 600 250 C800 230 1000 260 1200 245 V420 H0Z" fill="#9DB8A0"></path>
+<path d="M0 420 C300 400 900 400 1200 420 V675 H0Z" fill="#6FA5CB"></path>
+<g stroke="#A5CCE6" stroke-width="4" stroke-linecap="round"><path d="M100 560 h120"></path><path d="M500 610 h90"></path><path d="M880 570 h140"></path></g>
+<rect x="0" y="300" width="1200" height="40" fill="#94A3B8"></rect>
+<rect x="0" y="290" width="1200" height="12" fill="#CBD5E1"></rect>
+<g fill="#94A3B8">
+<path d="M80 340 H330 V360 Q205 420 80 360Z"></path>
+<path d="M400 340 H650 V360 Q525 420 400 360Z"></path>
+<path d="M720 340 H970 V360 Q845 420 720 360Z"></path>
+</g>
+<g fill="#64748B"><rect x="40" y="340" width="40" height="160"></rect><rect x="330" y="340" width="70" height="170"></rect><rect x="650" y="340" width="70" height="170"></rect><rect x="970" y="340" width="70" height="160"></rect></g>
+<g fill="#E2E8F0"><rect x="0" y="260" width="1200" height="8"></rect></g>
+<g fill="#E2E8F0"><rect x="20" y="260" width="8" height="32"></rect><rect x="120" y="260" width="8" height="32"></rect><rect x="220" y="260" width="8" height="32"></rect><rect x="320" y="260" width="8" height="32"></rect><rect x="420" y="260" width="8" height="32"></rect><rect x="520" y="260" width="8" height="32"></rect><rect x="620" y="260" width="8" height="32"></rect><rect x="720" y="260" width="8" height="32"></rect><rect x="820" y="260" width="8" height="32"></rect><rect x="920" y="260" width="8" height="32"></rect><rect x="1020" y="260" width="8" height="32"></rect><rect x="1120" y="260" width="8" height="32"></rect></g>
+<g transform="translate(560 248)">
+<rect x="0" y="0" width="240" height="26" fill="#FFFFFF"></rect>
+<g fill="#DC2626"><polygon points="0,0 30,0 10,26 -20,26"></polygon><polygon points="60,0 90,0 70,26 40,26"></polygon><polygon points="120,0 150,0 130,26 100,26"></polygon><polygon points="180,0 210,0 190,26 160,26"></polygon></g>
+<rect x="10" y="26" width="8" height="30" fill="#334155"></rect><rect x="222" y="26" width="8" height="30" fill="#334155"></rect>
+</g>
+<g transform="translate(860 180)">
+<rect x="0" y="0" width="230" height="80" rx="8" fill="#F59E0B"></rect>
+<text x="115" y="34" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#1E293B">HEAVY VEHICLES</text>
+<text x="115" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#1E293B">DIVERTED →</text>
+<rect x="110" y="80" width="10" height="34" fill="#334155"></rect>
+</g>
+<g transform="translate(260 252)"><rect x="0" y="0" width="120" height="36" rx="12" fill="#2563EB"></rect><rect x="20" y="-22" width="70" height="26" rx="8" fill="#2563EB"></rect><rect x="30" y="-16" width="50" height="16" rx="3" fill="#BFDBFE"></rect><circle cx="26" cy="38" r="12" fill="#1E293B"></circle><circle cx="94" cy="38" r="12" fill="#1E293B"></circle></g>
+</svg>
